@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Instructor;
+use App\Models\Area;
 use Illuminate\Http\Request;
 
-class InstructorController extends Controller
+class AreaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class InstructorController extends Controller
      */
     public function index()
     {
-        return view('instructores.index');
+        //
     }
 
     /**
@@ -41,10 +41,10 @@ class InstructorController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Instructor  $instructor
+     * @param  \App\Models\Area  $area
      * @return \Illuminate\Http\Response
      */
-    public function show(Instructor $instructor)
+    public function show(Area $area)
     {
         //
     }
@@ -52,10 +52,10 @@ class InstructorController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Instructor  $instructor
+     * @param  \App\Models\Area  $area
      * @return \Illuminate\Http\Response
      */
-    public function edit(Instructor $instructor)
+    public function edit(Area $area)
     {
         //
     }
@@ -64,10 +64,10 @@ class InstructorController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Instructor  $instructor
+     * @param  \App\Models\Area  $area
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Instructor $instructor)
+    public function update(Request $request, Area $area)
     {
         //
     }
@@ -75,10 +75,10 @@ class InstructorController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Instructor  $instructor
+     * @param  \App\Models\Area  $area
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Instructor $instructor)
+    public function destroy(Area $area)
     {
         //
     }

@@ -10,4 +10,9 @@ class Instructor extends Model
     use HasFactory;
 
     protected $table = 'instructors';
+
+    public function area()
+    {
+        return $this->hasOne(Area::class, 'fk_area');
+    }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\InstructorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,3 +27,6 @@ Route::middleware([
         return view('principal.index');
     })->name('dashboard');
 });
+
+//Rutas Instructores
+Route::get('/instructores/index', [InstructorController::class, 'index'])->name('instructores.index');
