@@ -22,8 +22,18 @@
 
 @section('content')
 <div class="container-fluid">
+  <div class="row mb-3">
+    <div class="col-md-2">
+      <a href="{{ route('instructores.create') }}">
+        <button type="button" class="btn btn-block btn-md" style="background-color: #F05C12;">
+          Crear Instructor
+        </button>
+      </a>
+    </div>
+  </div>
   <div class="row">
     <div class="col-md-12">
+      {{-- Componente para tabla de instructores e informacion detallada --}}
       <livewire:instructor.tabla-instructores />
     </div>
   </div>
