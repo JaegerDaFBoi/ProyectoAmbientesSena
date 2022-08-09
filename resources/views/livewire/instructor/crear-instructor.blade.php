@@ -4,26 +4,32 @@
             <h4>Formulario para registro de instructor</h4>
         </div>
         <div class="card-body">
+            @if ($errors->any())
+            <div class="alert alert-warning" role="alert">
+                <p class="text-dark">Oops! Hay errores en el registro.</p>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
             <form wire:submit.prevent='crearInstructor' method="post">
                 <div class="row">
                     <div class="form-group col-md-6">
-
                         <label for="nombreInstructor" class="text-dark">Nombre</label>
-                        <input type="text" id="nombreInstructor" name="nombreInstructor" class="form-control"
-                            wire:model='nombre'>
+                        <input type="text" id="nombreInstructor" name="nombreInstructor" class="form-control" wire:model='nombre'>
                     </div>
                     <div class="form-group col-md-6">
-
                         <label for="apellidosInstructor" class="text-dark">Apellidos</label>
-                        <input type="text" id="apellidosInstructor" name="apellidosInstructor" class="form-control"
-                            wire:model='apellidos'>
+                        <input type="text" id="apellidosInstructor" name="apellidosInstructor" class="form-control" wire:model='apellidos'>
                     </div>
                 </div>
                 <div class="row">
-                  <div class="form-group col-md-6">
-                    <label for="cedulaInstructor" class="text-dark">Cédula</label>
-                    <input type="text" id="cedulaInstructor" name="cedulaInstructor" class="form-control" wire:model="cedula">
-                  </div>
+                    <div class="form-group col-md-6">
+                        <label for="cedulaInstructor" class="text-dark">Cédula</label>
+                        <input type="text" id="cedulaInstructor" name="cedulaInstructor" class="form-control" wire:model="cedula">
+                    </div>
                 </div>
                 <div class="row">
                     <div class=" form-group col-md-6">
@@ -35,7 +41,7 @@
                             </x-slot>
                             <option>Seleccione un area</option>
                             @foreach ($areas as $area)
-                                <option value="{{ $area->id }}">{{ $area->nombre }}</option>
+                            <option value="{{ $area->id }}">{{ $area->nombre }}</option>
                             @endforeach
                         </x-adminlte-select>
                     </div>
@@ -57,29 +63,28 @@
                             <label class="form-check-label">Planta</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="vinculacionInstructor"
-                                value="Contratista" wire:model="vinculacion">
+                            <input class="form-check-input" type="radio" name="vinculacionInstructor" value="Contratista" wire:model="vinculacion">
                             <label class="form-check-label">Contratista</label>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                  <div class="form-group col-md-8">
-                    <label for="emailInstructor" class="text-dark">Correo Electronico</label>
-                    <input type="email" id="emailInstructor" name="emailInstructor" class="form-control" wire:model="email"> 
-                  </div>
-                  <div class="form-group col-md-4">
-                    <label for="horasInstructor" class="text-dark">Horas Semanales</label>
-                    <input type="number" id="horasInstructor" name="horasInstructor" class="form-control" wire:model="horas">
-                  </div>
+                    <div class="form-group col-md-8">
+                        <label for="emailInstructor" class="text-dark">Correo Electronico</label>
+                        <input type="email" id="emailInstructor" name="emailInstructor" class="form-control" wire:model="email">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="horasInstructor" class="text-dark">Horas Semanales</label>
+                        <input type="number" id="horasInstructor" name="horasInstructor" class="form-control" wire:model="horas">
+                    </div>
                 </div>
                 <div class="row justify-content-center">
-                  <div class="col-md-6">
-                    <button type="submit" class="btn btn-block" style="background-color: #F05C12">
-                    <i class="fas fa-lg fa-save"></i>
-                    Guardar
-                    </button>
-                  </div>
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-block" style="background-color: #F05C12">
+                            <i class="fas fa-lg fa-save"></i>
+                            Guardar
+                        </button>
+                    </div>
                 </div>
             </form>
         </div>

@@ -20,8 +20,11 @@ class TablaInstructores extends Component
     public $horassemana;
     public $email;
 
+   
+    // Metodo para asignar datos del instructor a propiedades para mostrar informacion en la vista
     public function setInstructor($id)
     {
+        
         $this->idInstructor = $id;
         $instructor = DB::table('instructors')->where('id', $id)->first();
         $this->nombre = $instructor->nombre;
