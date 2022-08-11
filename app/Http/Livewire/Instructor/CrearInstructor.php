@@ -19,8 +19,8 @@ class CrearInstructor extends Component
   public $horas;
 
   protected $rules = [
-    'nombre' => 'required|alpha',
-    'apellidos' => 'required|alpha',
+    'nombre' => 'required',
+    'apellidos' => 'required',
     'cedula' => 'required|numeric',
     'area' => 'required',
     'tipo' => 'required|alpha',

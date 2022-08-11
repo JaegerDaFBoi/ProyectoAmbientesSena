@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\EnvironmentController;
 use App\Http\Controllers\InstructorController;
+use App\Http\Controllers\ProgramController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,3 +37,7 @@ Route::get('/instructores/{instructor}/edit', [InstructorController::class, 'edi
 
 //Rutas Ambientes
 Route::get('/ambientes/index', [EnvironmentController::class, 'index'])->name('ambientes.index');
+
+//Rutas Programas
+Route::get('/programas/index', [ProgramController::class, 'index'])->name('programas.index');
+Route::get('/programas/create', [ProgramController::class, 'create'])->name('programas.create');

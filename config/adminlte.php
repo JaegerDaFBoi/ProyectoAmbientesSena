@@ -249,6 +249,11 @@ return [
             'route' => 'ambientes.index',
             'icon' => 'fas fa-chalkboard-teacher',
         ],
+        [
+            'text' => 'Programas de Formación',
+            'route' => 'programas.index',
+            'icon' => 'fas fa-book-open',
+        ],
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
