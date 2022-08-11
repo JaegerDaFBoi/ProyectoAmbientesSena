@@ -18,8 +18,13 @@
                         <td>{{ $instructor->apellidos }}</td>
                         <td>
                             <button type="button" wire:click="setInstructor({{ $instructor->id }})">
-                            <i class="fas fa-search"></i>
+                                <i class="fas fa-search"></i>
                             </button>
+                            <a href="{{ route('instructores.edit', $instructor) }}">
+                                <button type="button">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </a>
                         </td>
                     </tr>
                     @endforeach
@@ -41,31 +46,31 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <label class="text-dark">Cédula</label>
-                            <p>{{ $cedula }}</p> 
+                            <p>{{ $cedula }}</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
                             <label class="text-dark">Correo Electrónico</label>
-                            <p>{{ $email }}</p> 
+                            <p>{{ $email }}</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
                             <label class="text-dark">Area a la que pertenece</label>
-                            <p>{{ $area }}</p> 
+                            <p>{{ $area }}</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
                             <label class="text-dark">Tipo de contrato</label>
-                            <p>{{ $tipo }} - {{ $vinculacion }} </p> 
+                            <p>{{ $tipo }} - {{ $vinculacion }} </p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
                             <label class="text-dark">Horas Semanales</label>
-                            <p>{{ $horassemana }}</p> 
+                            <p>{{ $horassemana }}</p>
                         </div>
                     </div>
                 </div>

@@ -57,7 +57,7 @@ class InstructorController extends Controller
      */
     public function edit(Instructor $instructor)
     {
-        //
+        return view('instructores.edit', compact('instructor'));
     }
 
     /**

@@ -22,7 +22,7 @@ class CrearInstructor extends Component
     'nombre' => 'required|alpha',
     'apellidos' => 'required|alpha',
     'cedula' => 'required|numeric',
-    'area' => 'required|alpha',
+    'area' => 'required',
     'tipo' => 'required|alpha',
     'vinculacion' => 'required|alpha',
     'horas' => 'required|numeric|max:200',
