@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Instructor;
 use App\Models\Area;
 use App\Models\Instructor;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 use Livewire\Component;
 
 class TablaInstructores extends Component
@@ -36,6 +37,14 @@ class TablaInstructores extends Component
         $this->vinculacion = $instructor->vinculacion;
         $this->horassemana = $instructor->horassemana;
         $this->email = $instructor->email;
+    }
+
+    public function borrarInstructor($id)
+    {
+        $instructor = Instructor::where('isEliminated', false)->where('id', $id)->first();
+        $instructor->isEliminated = true;
+        $instructor->save();
+        return Redirect::route('instructores.index');
     }
 
     public function render()

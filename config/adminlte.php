@@ -237,11 +237,17 @@ return [
         ],
 
         // Sidebar items:
+        ['header' => 'Datos de formación'],
         [
-            'text'        => 'Instructores',
-            'route'         => 'instructores.index',
-            'icon'        => 'fas fa-fw fa-user',
+            'text' => 'Instructores',
+            'route' => 'instructores.index',
+            'icon' => 'fas fa-fw fa-user',
 
+        ],
+        [
+            'text' => 'Ambientes',
+            'route' => 'ambientes.index',
+            'icon' => 'fas fa-chalkboard-teacher',
         ],
         ['header' => 'account_settings'],
         [

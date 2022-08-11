@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EnvironmentController;
 use App\Http\Controllers\InstructorController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,3 +33,6 @@ Route::middleware([
 Route::get('/instructores/index', [InstructorController::class, 'index'])->name('instructores.index');
 Route::get('/instructores/create', [InstructorController::class, 'create'])->name('instructores.create');
 Route::get('/instructores/{instructor}/edit', [InstructorController::class, 'edit'])->name('instructores.edit');
+
+//Rutas Ambientes
+Route::get('/ambientes/index', [EnvironmentController::class, 'index'])->name('ambientes.index');
