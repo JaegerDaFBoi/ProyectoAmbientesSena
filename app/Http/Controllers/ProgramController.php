@@ -55,9 +55,9 @@ class ProgramController extends Controller
      * @param  \App\Models\Program  $program
      * @return \Illuminate\Http\Response
      */
-    public function edit(Program $program)
+    public function edit(Program $programa)
     {
-        //
+        return view('programas.edit', compact('programa'));
     }
 
     /**

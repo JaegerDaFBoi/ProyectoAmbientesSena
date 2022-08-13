@@ -30,6 +30,24 @@
                                 <button type="button" wire:click="mostrarInfo({{ $programa->id }})">
                                     <i class="fas fa-search"></i>
                                 </button>
+                                <a href="{{ route('programas.edit', $programa) }}">
+                                    <button type="button">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                </a>
+                                <button type="button" data-toggle="modal" data-target="#modalEliminar{{ $programa->id }}">
+                                    <i class="far fa-trash-alt"></i>
+                                </button>
+                                <x-adminlte-modal id="modalEliminar{{ $programa->id }}" title="Eliminar programa de formación" size="md" theme="orange" static-backdrop>
+                                    <h3 class="text-dark">¿Está seguro que desea eliminar este registro?</h3>
+                                    <x-slot name="footerSlot">
+                                        <form wire:submit.prevent="borrarPrograma({{ $programa->id }})" method="post">
+                                            <button type="submit" class="btn btn-block" style="background-color: #F05C12;">
+                                                Eliminar
+                                            </button>
+                                        </form>
+                                    </x-slot>
+                                </x-adminlte-modal>
                             </td>
                         </tr>
                         @endforeach
@@ -42,7 +60,7 @@
                     <div class="card-header" style="background-color: #F05C12;">
                         <div class="row">
                             <div class="col-md-10">
-                                <h3 class="card-title text-dark">Detalle del programa de formación</h3>
+                                <h3 class="card-title text-dark">Detalle del programa de formación {{ $codigo }} </h3>
                             </div>
                             <div class="col-md-2">
                                 <button type="button" wire:click='cerrar'>

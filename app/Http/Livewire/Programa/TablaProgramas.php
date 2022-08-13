@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Programa;
 
 use App\Models\Program;
+use Illuminate\Support\Facades\Redirect;
 use Livewire\Component;
 
 class TablaProgramas extends Component
@@ -35,6 +36,14 @@ class TablaProgramas extends Component
     public function cerrar()
     {
         $this->info = false;
+    }
+
+    public function borrarPrograma($id)
+    {
+        $programa = Program::where('isEliminated', false)->where('id', $id)->first();
+        $programa->isEliminated = true;
+        $programa->save();
+        return Redirect::route('programas.index');
     }
 
     public function render()

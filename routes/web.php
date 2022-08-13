@@ -41,3 +41,4 @@ Route::get('/ambientes/index', [EnvironmentController::class, 'index'])->name('a
 //Rutas Programas
 Route::get('/programas/index', [ProgramController::class, 'index'])->name('programas.index');
 Route::get('/programas/create', [ProgramController::class, 'create'])->name('programas.create');
+Route::get('/programas/{programa}/edit', [ProgramController::class, 'edit'])->name('programas.edit');
