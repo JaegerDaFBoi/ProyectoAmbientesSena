@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CardController;
 use App\Http\Controllers\EnvironmentController;
 use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\ProgramController;
@@ -42,3 +43,8 @@ Route::get('/ambientes/index', [EnvironmentController::class, 'index'])->name('a
 Route::get('/programas/index', [ProgramController::class, 'index'])->name('programas.index');
 Route::get('/programas/create', [ProgramController::class, 'create'])->name('programas.create');
 Route::get('/programas/{programa}/edit', [ProgramController::class, 'edit'])->name('programas.edit');
+
+//Rutas Fichas
+Route::get('/fichas/index', [CardController::class, 'index'])->name('fichas.index');
+Route::get('/fichas/create', [CardController::class, 'create'])->name('fichas.create');
+Route::post('/fichas/store', [CardController::class, 'store'])->name('fichas.store');
