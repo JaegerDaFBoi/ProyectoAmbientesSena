@@ -3,6 +3,8 @@
 namespace App\Http\Livewire\Ficha;
 
 use App\Models\Card;
+use App\Models\Instructor;
+use Illuminate\Support\Facades\Redirect;
 use Livewire\Component;
 
 class TablaFichas extends Component
@@ -34,8 +36,18 @@ class TablaFichas extends Component
         $this->modalidad = $ficha->modalidad;
         $this->fechainicio = $ficha->fechainicio;
         $this->fechafin = $ficha->fechafin;
-        $this->instructor = $ficha->instructor->nombre . ' ' . $ficha->instructor->apellidos;
+        $instructor = Instructor::where('isEliminated', false)->where('id', $ficha->fk_instructor)->first();
+        $nombre = $instructor->nombre . " " . $instructor->apellidos;
+        $this->instructor = $nombre;
         $this->cantidad = $ficha->cantidad;
+    }
+
+    public function eliminarFicha($id)
+    {
+        $ficha = Card::where('isEliminated', false)->where('id', $id)->first();
+        $ficha->isEliminated = true;
+        $ficha->save();
+        return Redirect::route('fichas.index');
     }
 
     public function render()

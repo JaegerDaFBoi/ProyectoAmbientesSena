@@ -81,9 +81,10 @@ class CardController extends Controller
      * @param  \App\Models\Card  $card
      * @return \Illuminate\Http\Response
      */
-    public function edit(Card $card)
+    public function edit(Card $ficha)
     {
-        //
+        $ficha = Card::where('id', $ficha->id)->first();
+        return view('fichas.edit', compact('ficha'));
     }
 
     /**

@@ -20,6 +20,24 @@
                             <button type="button" wire:click="mostrar({{ $ficha->id }})">
                                 <i class="fas fa-search"></i>
                             </button>
+                            <a href="{{ route('fichas.edit', $ficha) }}">
+                                <button type="button">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </a>
+                            <button type="button" data-toggle="modal" data-target="#modalEliminar{{ $ficha->id }}">
+                                <i class="far fa-trash-alt"></i>
+                            </button>
+                            <x-adminlte-modal id="modalEliminar{{ $ficha->id }}" title="Eliminar registro de instructor" size="md" theme="orange" static-backdrop>
+                                <h3 class="text-dark">¿Está seguro que desea eliminar este registro?</h3>
+                                <x-slot name="footerSlot">
+                                    <form wire:submit.prevent="eliminarFicha({{ $ficha->id }})" method="post">
+                                        <button type="submit" class="btn btn-block" style="background-color: #F05C12;">
+                                            Eliminar
+                                        </button>
+                                    </form>
+                                </x-slot>
+                            </x-adminlte-modal>
                         </td>
                     </tr>
                     @endforeach

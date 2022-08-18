@@ -48,3 +48,4 @@ Route::get('/programas/{programa}/edit', [ProgramController::class, 'edit'])->na
 Route::get('/fichas/index', [CardController::class, 'index'])->name('fichas.index');
 Route::get('/fichas/create', [CardController::class, 'create'])->name('fichas.create');
 Route::post('/fichas/store', [CardController::class, 'store'])->name('fichas.store');
+Route::get('/fichas/{ficha}/edit', [CardController::class, 'edit'])->name('fichas.edit');
