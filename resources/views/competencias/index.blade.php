@@ -22,15 +22,9 @@
 
 @section('content')
 <div class="container-fluid">
-  <div class="row mb-3">
-    <div class="col-md-4">
-      <a href="{{ route('fichas.create') }}">
-        <button type="button" class="btn btn-block btn-md" style="background-color: #F05C12;">
-          
-        </button>
-      </a>
-    </div>
-  </div>
+
+  <livewire:competencia.crear-competencia :programa="$programa" />
+
   <div class="row">
     <div class="col-md-12">
       <livewire:competencia.tabla-competencias :programa="$programa" />

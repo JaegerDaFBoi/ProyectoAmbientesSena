@@ -24,9 +24,10 @@ class CompetenceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Program $programa)
     {
-        //
+        
+        return view('competencias.create', compact('programa'));
     }
 
     /**
