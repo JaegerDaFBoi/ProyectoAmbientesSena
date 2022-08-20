@@ -107,6 +107,11 @@
                                 <p>{{ $totaltrimestres}} trimestres</p>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a href="{{ route('competencias.index', $idprograma) }}">Ver Competencias asociadas</a> 
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

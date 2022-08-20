@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CardController;
+use App\Http\Controllers\CompetenceController;
 use App\Http\Controllers\EnvironmentController;
 use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\ProgramController;
@@ -49,3 +50,6 @@ Route::get('/fichas/index', [CardController::class, 'index'])->name('fichas.inde
 Route::get('/fichas/create', [CardController::class, 'create'])->name('fichas.create');
 Route::post('/fichas/store', [CardController::class, 'store'])->name('fichas.store');
 Route::get('/fichas/{ficha}/edit', [CardController::class, 'edit'])->name('fichas.edit');
+
+//Rutas Competencias
+Route::get('/competencias/{idprograma}/index', [CompetenceController::class, 'index'])->name('competencias.index');

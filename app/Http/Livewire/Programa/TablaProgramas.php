@@ -10,6 +10,7 @@ class TablaProgramas extends Component
 {
 
     public $info = false;
+    public $idprograma;
     public $codigo;
     public $nombre;
     public $duracionlectiva;
@@ -23,6 +24,7 @@ class TablaProgramas extends Component
     {
         $this->info = true;
         $programa = Program::where('isEliminated', false)->where('id', $id)->first();
+        $this->idprograma = $programa->id;
         $this->codigo = $programa->codigo;
         $this->nombre = $programa->nombre;
         $this->duracionlectiva = $programa->duracionlectiva;
