@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'asset_url' => 'http://localhost/ProyectoAmbientesSena/public',
+    'asset_url' => null,
 
     /*
     |--------------------------------------------------------------------------

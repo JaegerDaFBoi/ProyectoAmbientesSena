@@ -12,7 +12,13 @@
                     </tr>
                 </thead>
                 <tbody>
-
+                    @foreach ($competencias as $competencia)
+                        <tr>
+                            <td>{{ $competencia->id }}</td>
+                            <td>{{ $competencia->codigo }}</td>
+                            <td>{{ $competencia->descripcion }}</td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
