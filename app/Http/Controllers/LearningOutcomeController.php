@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Competence;
 use App\Models\LearningOutcome;
+use App\Models\Program;
 use Illuminate\Http\Request;
 
 class LearningOutcomeController extends Controller
@@ -22,9 +24,11 @@ class LearningOutcomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($idcompetencia)
     {
-        //
+        $competencia = Competence::where('isEliminated', false)->where('id', $idcompetencia)->first();
+        $programa = Program::where('isEliminated', false)->where('id', $competencia->fk_programa)->first();
+        return view('resultados.create', compact('competencia', 'programa'));
     }
 
     /**

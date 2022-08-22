@@ -32,7 +32,7 @@
                         </div>
                         <div class="row">
                             <div class="form-group col-md-8">
-                                <x-adminlte-textarea name="descripcionCompetencia" label="Descripción" rows="8" col="40" label-class="text-dark" wire:model='descripcion' />
+                                <x-adminlte-textarea name="descripcionCompetencia" label="Descripción" rows="4" col="20" label-class="text-dark" wire:model='descripcion' />
                             </div>
                         </div>
                         <div class="row">

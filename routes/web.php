@@ -4,6 +4,7 @@ use App\Http\Controllers\CardController;
 use App\Http\Controllers\CompetenceController;
 use App\Http\Controllers\EnvironmentController;
 use App\Http\Controllers\InstructorController;
+use App\Http\Controllers\LearningOutcomeController;
 use App\Http\Controllers\ProgramController;
 use Illuminate\Support\Facades\Route;
 
@@ -53,3 +54,6 @@ Route::get('/fichas/{ficha}/edit', [CardController::class, 'edit'])->name('ficha
 
 //Rutas Competencias
 Route::get('/competencias/{idprograma}/index', [CompetenceController::class, 'index'])->name('competencias.index');
+
+//Rutas Resultados
+Route::get('/resultados/{idcompetencia}/create', [LearningOutcomeController::class, 'create'])->name('resultados.create');
