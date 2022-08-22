@@ -6,6 +6,7 @@ use App\Models\Competence;
 use App\Models\LearningOutcome;
 use App\Models\Program;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class LearningOutcomeController extends Controller
 {
@@ -37,9 +38,16 @@ class LearningOutcomeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Competence $competencia, Program $programa)
     {
-        //
+        $resultado = new LearningOutcome();
+        $resultado->descripcion = $request->descripcionResultado;
+        $resultado->trimestreasignacion = $request->trimestreAsignacion;
+        $resultado->trimestreevaluacion = $request->trimestreEvaluacion;
+        $resultado->horassemana = $request->horasSemanales;
+        $resultado->fk_competencia = $competencia->id;
+        $resultado->save();
+        return Redirect::route('competencias.index', $programa->id);
     }
 
     /**

@@ -107,7 +107,7 @@
     @if ($mostrarResultados)
     <div class="row mt-2">
         <div class="col-md-4">
-            <a href="{{ route('resultados.create', ['idcompetencia' => $idcompetencia]) }}">
+            <a href="{{ route('resultados.create', ['idcompetencia' => $idcompetencia, 'idprograma' => $programa->id]) }}">
                 <button type="button" class="btn btn-block" style="background-color: #F05C12;">
                     Añadir Resultado
                 </button>
@@ -133,7 +133,15 @@
                                 </tr>
                             </thead>
                             <tbody>
-
+                            @foreach ($resultados as $resultado)
+                                <tr>
+                                    <td>{{ $resultado->id }}</td>
+                                    <td>{{ $resultado->descripcion }}</td>
+                                    <td>{{ $resultado->trimestreasignacion }}</td>
+                                    <td>{{ $resultado->trimestreevaluacion }}</td>
+                                    <td>{{ $resultado->horassemana }}</td>
+                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
