@@ -12,12 +12,18 @@ class TablaCompetencias extends Component
 
     public $programa;
     public $mostrarEditar = false;
+    public $editarResultado = false;
     public $mostrarResultados = false;
     public $idprograma;
     public $idcompetencia;
     public $codigo;
     public $descripcion;
     public $resultados;
+    public $idresultado;
+    public $descripcionresultado;
+    public $trimestreasignacion;
+    public $trimestreevaluacion;
+    public $horassemana;
 
     protected $rules = [
         'idprograma' => 'required',
@@ -41,6 +47,39 @@ class TablaCompetencias extends Component
         $this->descripcion = $competencia->descripcion;
         $this->idprograma = $competencia->fk_programa;
         
+    }
+
+    public function editarResultado($id)
+    {
+      $resultado = LearningOutcome::where('isEliminated', false)->where('id', $id)->first();
+      $this->editarResultado = true;
+      $this->idresultado = $id;
+      $this->idcompetencia = $resultado->fk_competencia;
+      $this->descripcionresultado = $resultado->descripcion;
+      $this->trimestreasignacion = $resultado->trimestreasignacion;
+      $this->trimestreevaluacion = $resultado->trimestreevaluacion;
+      $this->horassemana = $resultado->horassemana;
+    }
+
+    public function guardarResultado()
+    {
+      $resultado = LearningOutcome::where('isEliminated', false)->where('id', $this->idresultado)->first();
+      $resultado->descripcion = $this->descripcionresultado;
+      $resultado->trimestreasignacion = $this->trimestreasignacion;
+      $resultado->trimestreevaluacion = $this->trimestreevaluacion;
+      $resultado->horassemana = $this->horassemana;
+      $resultado->fk_competencia = $this->idcompetencia;
+      $resultado->save();
+      return Redirect::route('competencias.index', ['idprograma' => $this->idprograma]);
+
+    }
+
+    public function borrarResultado($id)
+    {
+      $resultado = LearningOutcome::where('isEliminated', false)->where('id', $id)->first();
+      $resultado->isEliminated = true;
+      $resultado->save();
+      return Redirect::route('competencias.index', ['idprograma' => $this->idprograma]);
     }
 
     public function cerrar()
