@@ -3,6 +3,7 @@
 use App\Http\Controllers\CardController;
 use App\Http\Controllers\CompetenceController;
 use App\Http\Controllers\EnvironmentController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\LearningOutcomeController;
 use App\Http\Controllers\ProgramController;
@@ -58,3 +59,6 @@ Route::get('/competencias/{idprograma}/index', [CompetenceController::class, 'in
 //Rutas Resultados
 Route::get('/resultados/{idcompetencia}/create', [LearningOutcomeController::class, 'create'])->name('resultados.create');
 Route::post('/resultados/{competencia}/{programa}/store', [LearningOutcomeController::class, 'store'])->name('resultados.store');
+
+//Rutas Calendario
+Route::get('/eventos/index', [EventController::class, 'index'])->name('eventos.index');

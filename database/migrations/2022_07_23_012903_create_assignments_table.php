@@ -20,9 +20,6 @@ return new class extends Migration
             $table->unsignedBigInteger('fk_resultado')->nullable()->index('fk_assignment_outcome');
             $table->unsignedBigInteger('fk_instructor')->nullable()->index('fk_assignment_instructor');
             $table->unsignedBigInteger('fk_ambiente')->nullable()->index('fk_assignment_environment');
-            $table->date('fecha');
-            $table->time('horainicio');
-            $table->time('horafin');
             $table->unsignedBigInteger('fk_tipo')->nullable()->index('fk_assignment_type');
             $table->longText('descripcion');
             $table->timestamps();

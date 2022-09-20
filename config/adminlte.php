@@ -310,9 +310,9 @@ return [
         ],
         ['header' => 'labels'],
         [
-            'text'       => 'important',
+            'text'       => 'Eventos',
             'icon_color' => 'red',
-            'url'        => '#',
+            'route'        => 'eventos.index',
         ],
         [
             'text'       => 'warning',
