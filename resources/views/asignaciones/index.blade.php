@@ -128,7 +128,7 @@
         day: 'Dia'
       },
       navLinks: true,
-      events: "/eventos/mostrar",
+      events: { url: '{{ route("eventos.show") }}' }
     });
     calendar.render();
   });

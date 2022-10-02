@@ -63,4 +63,4 @@ Route::post('/resultados/{competencia}/{programa}/store', [LearningOutcomeContro
 //Rutas Calendario
 Route::get('/eventos/index', [EventController::class, 'index'])->name('eventos.index');
 Route::post('/eventos/store', [EventController::class, 'store'])->name('eventos.store');
-Route::get('(eventos/mostrar', [EventController::class, 'show']);
+Route::get('/eventos/mostrar', [EventController::class, 'show'])->name('eventos.show');
