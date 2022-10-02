@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Assignment;
 use App\Models\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class EventController extends Controller
 {
@@ -14,7 +16,8 @@ class EventController extends Controller
      */
     public function index()
     {
-        return view('asignaciones.index');
+        $eventos = Event::all();
+        return response()->view('asignaciones.index', [$eventos]);
     }
 
     /**
@@ -35,7 +38,27 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $assignment = new Assignment();
+        $assignment->fk_ficha = $request->input('fichaAsignacion');
+        $assignment->fk_competencia = $request->input('competenciaAsignacion');
+        $assignment->fk_resultado = $request->input('resultadoAsignacion');
+        $assignment->fk_instructor = $request->input('instructorAsignacion');
+        $assignment->fk_ambiente = $request->input('ambienteAsignacion');
+        $assignment->tipo = $request->input('tipoAsignacion');
+        $assignment->descripcion = $request->input('descripcionAsignacion');
+        $assignment->save();
+        $assignmentkey = $assignment->id;
+        $event = new Event();
+        $numeroficha = strval($assignment->ficha->numero);
+        $tituloevento = $numeroficha . '-' . $assignment->instructor->nombre . ' ' . $assignment->instructor->apellidos;
+        $descripcionevento = $assignment->descripcion;
+        $event->title = $tituloevento;
+        $event->description = $descripcionevento;
+        $event->start = $request->input('fechaInicio');
+        $event->end = $request->input('fechaFin');
+        $event->fk_assignment = $assignmentkey;
+        $event->save();
+        return Redirect::route('eventos.index');
     }
 
     /**
@@ -46,7 +69,8 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        //
+        $evento = Event::all();
+        return response()->json($evento);
     }
 
     /**

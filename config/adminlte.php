@@ -442,6 +442,11 @@ return [
                 [
                     'type' => 'js',
                     'asset' => true,
+                    'location' => 'vendor/moment/moment-with-locales.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
                     'location' => 'vendor/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js',
                 ],
                 [

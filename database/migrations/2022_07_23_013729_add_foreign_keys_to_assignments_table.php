@@ -19,7 +19,6 @@ return new class extends Migration
           $table->foreign(['fk_resultado'], 'fk_assignment_outcome')->references(['id'])->on('learning_outcomes');
           $table->foreign(['fk_instructor'], 'fk_assignment_instructor')->references(['id'])->on('instructors');
           $table->foreign(['fk_ambiente'], 'fk_assignment_environment')->references(['id'])->on('environments');
-          $table->foreign(['fk_tipo'], 'fk_assignment_type')->references(['id'])->on('assignment_types');
         });
     }
 
@@ -36,7 +35,6 @@ return new class extends Migration
             $table->dropForeign('fk_assignment_outcome');
             $table->dropForeign('fk_assignment_instructor');
             $table->dropForeign('fk_assignment_environment');
-            $table->dropForeign('fk_assignment_type');
         });
     }
 };
