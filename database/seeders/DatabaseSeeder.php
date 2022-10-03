@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Competence;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,7 +20,12 @@ class DatabaseSeeder extends Seeder
             AreaSeeder::class,
             InstructorSeeder::class,
             EnvironmentSeeder::class,
-            ProgramSeeder::class
+            ProgramSeeder::class,
+            CompetenceSeeder::class,
+            LearningOutcomeSeeder::class,
+            CardSeeder::class,
+            AssignmentSeeder::class,
+            EventSeeder::class
         ]);
         // \App\Models\User::factory(10)->create();
 

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->unsignedBigInteger('fk_instructor')->nullable()->index('fk_assignment_instructor');
             $table->unsignedBigInteger('fk_ambiente')->nullable()->index('fk_assignment_environment');
             $table->string('tipo');
-            $table->longText('descripcion');
+            $table->longText('descripcion')->nullable();
             $table->timestamps();
         });
     }
