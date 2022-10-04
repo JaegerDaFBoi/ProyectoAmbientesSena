@@ -28,6 +28,7 @@
                             <button type="button" data-toggle="modal" data-target="#modalEliminar{{ $instructor->id }}">
                                 <i class="far fa-trash-alt"></i>
                             </button>
+                            <a href="{{ route('instructores.horarios', $instructor) }}">Ver Horarios</a>
                             <x-adminlte-modal id="modalEliminar{{ $instructor->id }}" title="Eliminar registro de instructor" size="md" theme="orange" static-backdrop>
                                 <h3 class="text-dark">¿Está seguro que desea eliminar este registro?</h3>
                                 <x-slot name="footerSlot">
@@ -86,6 +87,7 @@
                             <p>{{ $horassemana }}</p>
                         </div>
                     </div>
+                    
                 </div>
             </div>
         </div>

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Assignment;
+use App\Models\Event;
 use App\Models\Instructor;
 use Illuminate\Http\Request;
 
@@ -45,8 +47,15 @@ class InstructorController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Instructor $instructor)
-    {
-        //
+    { 
+        $ids = [];
+        $assignments = Assignment::where('fk_instructor', $instructor->id)->get();
+        foreach ($assignments as $assignment) {
+            array_push($ids, $assignment->id);
+        }
+        $events = Event::select()->whereIn('fk_assignment', $ids)->get();
+        json_encode($events);
+        return view('instructores.horarios', compact('events'));
     }
 
     /**
