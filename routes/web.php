@@ -9,6 +9,7 @@ use App\Http\Controllers\LearningOutcomeController;
 use App\Http\Controllers\ProgramController;
 use App\Models\Instructor;
 use Illuminate\Support\Facades\Route;
+use Laravel\Jetstream\Rules\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,6 +56,7 @@ Route::get('/fichas/index', [CardController::class, 'index'])->name('fichas.inde
 Route::get('/fichas/create', [CardController::class, 'create'])->name('fichas.create');
 Route::post('/fichas/store', [CardController::class, 'store'])->name('fichas.store');
 Route::get('/fichas/{ficha}/edit', [CardController::class, 'edit'])->name('fichas.edit');
+Route::get('/fichas/{ficha}/horarios', [CardController::class, 'show'])->name('fichas.horarios');
 
 //Rutas Competencias
 Route::get('/competencias/{idprograma}/index', [CompetenceController::class, 'index'])->name('competencias.index');

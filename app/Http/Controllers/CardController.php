@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Assignment;
 use App\Models\Card;
+use App\Models\Event;
 use App\Models\Instructor;
 use App\Models\Program;
 use Illuminate\Http\Request;
@@ -70,9 +72,15 @@ class CardController extends Controller
      * @param  \App\Models\Card  $card
      * @return \Illuminate\Http\Response
      */
-    public function show(Card $card)
+    public function show(Card $ficha)
     {
-        //
+        $ids = [];
+        $assignments = Assignment::where('fk_ficha', $ficha->id)->get();
+        foreach ($assignments as $assignment) {
+            array_push($ids, $assignment->id);
+        }
+        $events = Event::select()->whereIn('fk_assignment', $ids)->get();
+        return view('fichas.horarios',compact('events'));
     }
 
     /**
