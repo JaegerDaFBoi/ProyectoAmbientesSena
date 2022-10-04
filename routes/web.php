@@ -43,6 +43,7 @@ Route::get('/instructores/{instructor}/horarios', [InstructorController::class,'
 
 //Rutas Ambientes
 Route::get('/ambientes/index', [EnvironmentController::class, 'index'])->name('ambientes.index');
+Route::get('/ambientes/{ambiente}/horarios', [EnvironmentController::class, 'show'])->name('ambientes.horarios');
 
 //Rutas Programas
 Route::get('/programas/index', [ProgramController::class, 'index'])->name('programas.index');

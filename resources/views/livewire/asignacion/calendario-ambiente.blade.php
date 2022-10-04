@@ -1,10 +1,10 @@
 <div>
     <div wire:ignore>
-        <div id="instructorCalendar">
+        <div id="ambienteCalendar">
 
         </div>
+        {{ $events }}
     </div>
-
 </div>
 
 @push('js')
@@ -12,7 +12,7 @@
         document.addEventListener('livewire:load', function() {
             var now = moment();
             var data = @this.events;
-            var calendarEl = document.getElementById('instructorCalendar');
+            var calendarEl = document.getElementById('ambienteCalendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
                 locale: 'es',
@@ -30,7 +30,6 @@
                 navLinks: true,
                 events: JSON.parse(data)
             });
-            console.log(data);
             calendar.render();
         });
     </script>

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Assignment;
 use App\Models\Environment;
+use App\Models\Event;
 use Illuminate\Http\Request;
 
 class EnvironmentController extends Controller
@@ -45,9 +47,15 @@ class EnvironmentController extends Controller
      * @param  \App\Models\Environment  $environment
      * @return \Illuminate\Http\Response
      */
-    public function show(Environment $environment)
+    public function show(Environment $ambiente)
     {
-        //
+        $ids = [];
+        $assignments = Assignment::where('fk_ambiente', $ambiente->id)->get();
+        foreach ($assignments as $assignment) {
+            array_push($ids, $assignment->id);
+        }
+        $events = Event::select()->whereIn('fk_assignment',$ids)->get();
+        return view('ambientes.horarios', compact('events'));
     }
 
     /**
