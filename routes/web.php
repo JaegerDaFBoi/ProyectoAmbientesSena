@@ -36,36 +36,76 @@ Route::middleware([
     })->name('dashboard');
 });
 
-//Rutas Instructores
-Route::get('/instructores/index', [InstructorController::class, 'index'])->name('instructores.index');
-Route::get('/instructores/create', [InstructorController::class, 'create'])->name('instructores.create');
-Route::get('/instructores/{instructor}/edit', [InstructorController::class, 'edit'])->name('instructores.edit');
-Route::get('/instructores/{instructor}/horarios', [InstructorController::class,'show'])->name('instructores.horarios');
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    //Rutas Instructores
+    Route::prefix('instructores')->group(function () {
+        Route::name('instructores.')->group(function () {
+            Route::controller(InstructorController::class)->group(function () {
+                Route::get('/index', 'index')->name('index');
+                Route::get('/create', 'create')->name('create');
+                Route::get('/{instructor}/edit', 'edit')->name('edit');
+                Route::get('/{instructor}/horarios', 'show')->name('horarios');
+            });
+        });
+    });
+    //Rutas Ambientes
+    Route::prefix('ambientes')->group(function () {
+        Route::name('ambientes.')->group(function () {
+            Route::controller(EnvironmentController::class)->group(function () {
+                Route::get('/index', 'index')->name('index');
+                Route::get('/{ambiente}/horarios', 'show')->name('horarios');
+            });
+        });
+    });
+    //Rutas Programas
+    Route::prefix('programas')->group(function () {
+        Route::name('programas.')->group(function () {
+            Route::controller(ProgramController::class)->group(function () {
+                Route::get('/index', 'index')->name('index');
+                Route::get('/create', 'create')->name('create');
+                Route::get('/{programa}/edit', 'edit')->name('edit');
+            });
+        });
+    });
+    //Rutas Fichas
+    Route::prefix('fichas')->group(function () {
+        Route::name('fichas.')->group(function () {
+            Route::controller(CardController::class)->group(function () {
+                Route::get('/index', 'index')->name('index');
+                Route::get('/create', 'create')->name('create');
+                Route::post('/store', 'store')->name('store');
+                Route::get('/{ficha}/edit', 'edit')->name('edit');
+                Route::get('/{ficha}/horarios')->name('horarios');
+            });
+        });
+    });
+    //Rutas Competencias
+    Route::get('/competencias/{idprograma}/index', [CompetenceController::class, 'index'])->name('competencias.index');
+    //Rutas Resultados
+    Route::prefix('resultados')->group(function () {
+        Route::name('resultados.')->group(function () {
+            Route::controller(LearningOutcomeController::class)->group(function () {
+                Route::get('/{idcompetencia}/create', 'create')->name('create');
+                Route::post('/{competencia}/{programa}/store', 'store')->name('store');
+            });
+        });
+    });
+    //Rutas Calendario
+    Route::prefix('eventos')->group(function () {
+        Route::name('eventos.')->group(function () {
+            Route::controller(EventController::class)->group(function () {
+                Route::get('/index', 'index')->name('index');
+                Route::post('/store', 'store')->name('store');
+                Route::get('/mostrar', 'show')->name('show');
+            });
+        });
+    });
+});
 
-//Rutas Ambientes
-Route::get('/ambientes/index', [EnvironmentController::class, 'index'])->name('ambientes.index');
-Route::get('/ambientes/{ambiente}/horarios', [EnvironmentController::class, 'show'])->name('ambientes.horarios');
 
-//Rutas Programas
-Route::get('/programas/index', [ProgramController::class, 'index'])->name('programas.index');
-Route::get('/programas/create', [ProgramController::class, 'create'])->name('programas.create');
-Route::get('/programas/{programa}/edit', [ProgramController::class, 'edit'])->name('programas.edit');
 
-//Rutas Fichas
-Route::get('/fichas/index', [CardController::class, 'index'])->name('fichas.index');
-Route::get('/fichas/create', [CardController::class, 'create'])->name('fichas.create');
-Route::post('/fichas/store', [CardController::class, 'store'])->name('fichas.store');
-Route::get('/fichas/{ficha}/edit', [CardController::class, 'edit'])->name('fichas.edit');
-Route::get('/fichas/{ficha}/horarios', [CardController::class, 'show'])->name('fichas.horarios');
 
-//Rutas Competencias
-Route::get('/competencias/{idprograma}/index', [CompetenceController::class, 'index'])->name('competencias.index');
-
-//Rutas Resultados
-Route::get('/resultados/{idcompetencia}/create', [LearningOutcomeController::class, 'create'])->name('resultados.create');
-Route::post('/resultados/{competencia}/{programa}/store', [LearningOutcomeController::class, 'store'])->name('resultados.store');
-
-//Rutas Calendario
-Route::get('/eventos/index', [EventController::class, 'index'])->name('eventos.index');
-Route::post('/eventos/store', [EventController::class, 'store'])->name('eventos.store');
-Route::get('/eventos/mostrar', [EventController::class, 'show'])->name('eventos.show');
