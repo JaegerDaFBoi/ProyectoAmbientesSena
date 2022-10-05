@@ -1,54 +1,79 @@
 <div>
     <div class="row">
+        @if ($infoInstructor)
         <div class="col-md-7">
-            <table class="table table-bordered table-dark table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th class="text-center">#</th>
-                        <th>Nombre</th>
-                        <th>Apellidos</th>
-                        <th>Opciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($instructores as $instructor)
-                    <tr>
-                        <td>{{ $instructor->id }}</td>
-                        <td>{{ $instructor->nombre }}</td>
-                        <td>{{ $instructor->apellidos }}</td>
-                        <td>
-                            <button type="button" wire:click="setInstructor({{ $instructor->id }})">
-                                <i class="fas fa-search"></i>
-                            </button>
-                            <a href="{{ route('instructores.edit', $instructor) }}">
-                                <button type="button">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                            </a>
-                            <button type="button" data-toggle="modal" data-target="#modalEliminar{{ $instructor->id }}">
-                                <i class="far fa-trash-alt"></i>
-                            </button>
-                            <a href="{{ route('instructores.horarios', $instructor) }}">Ver Horarios</a>
-                            <x-adminlte-modal id="modalEliminar{{ $instructor->id }}" title="Eliminar registro de instructor" size="md" theme="orange" static-backdrop>
-                                <h3 class="text-dark">¿Está seguro que desea eliminar este registro?</h3>
-                                <x-slot name="footerSlot">
-                                    <form wire:submit.prevent="borrarInstructor({{ $instructor->id }})" method="post">
-                                        <button type="submit" class="btn btn-block" style="background-color: #F05C12;">
-                                            Eliminar
+            @else
+            <div class="col-md-12 justify-self-center">
+                @endif
+            <div wire:ignore>
+                <table id="tablaInstructores" class="table table-bordered table-dark table-striped table-hover table-responsive">
+                    <thead>
+                        <tr>
+                            <th class="text-center">#</th>
+                            <th>Nombre</th>
+                            <th>Apellidos</th>
+                            <th>Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($instructores as $instructor)
+                            <tr>
+                                <td>{{ $instructor->id }}</td>
+                                <td>{{ $instructor->nombre }}</td>
+                                <td>{{ $instructor->apellidos }}</td>
+                                <td>
+                                    <button type="button" wire:click="setInstructor({{ $instructor->id }})">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                    <a href="{{ route('instructores.edit', $instructor) }}">
+                                        <button type="button">
+                                            <i class="fas fa-edit"></i>
                                         </button>
-                                    </form>
-                                </x-slot>
-                            </x-adminlte-modal>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                                    </a>
+                                    <button type="button" data-toggle="modal"
+                                        data-target="#modalEliminar{{ $instructor->id }}">
+                                        <i class="far fa-trash-alt"></i>
+                                    </button>
+                                    <button type="button">
+                                        <a href="{{ route('instructores.horarios', $instructor) }}" style="color: #000000">Ver Horarios</a>
+                                        <i class="fas fa-user-clock"></i>
+                                    </button>
+                                    
+                                    <x-adminlte-modal id="modalEliminar{{ $instructor->id }}"
+                                        title="Eliminar registro de instructor" size="md" theme="orange"
+                                        static-backdrop>
+                                        <h3 class="text-dark">¿Está seguro que desea eliminar este registro?</h3>
+                                        <x-slot name="footerSlot">
+                                            <form wire:submit.prevent="borrarInstructor({{ $instructor->id }})"
+                                                method="post">
+                                                <button type="submit" class="btn btn-block"
+                                                    style="background-color: #F05C12;">
+                                                    Eliminar
+                                                </button>
+                                            </form>
+                                        </x-slot>
+                                    </x-adminlte-modal>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
+        @if ($infoInstructor)
         <div class="col-md-5">
             <div class="card">
                 <div class="card-header" style="background-color: #F05C12;">
-                    <h3 class="card-title text-dark">Información del instructor</h3>
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <h3 class="card-title text-dark">Información del instructor</h3>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" wire:click='cerrar'>
+                                <i class="fas fa-window-close"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -87,9 +112,31 @@
                             <p>{{ $horassemana }}</p>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
+        @endif
     </div>
 </div>
+
+@push('js')
+    <script>
+        $(document).ready(function() {
+            $('#tablaInstructores').DataTable({
+                "paging": true,
+                "lengthChange": true,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": true,
+                "responsive": true,
+                "scrollX": true,
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.12.1/i18n/es-MX.json'
+                }
+            });
+            $('.dataTables_length').addClass('bs-select');
+        });
+    </script>
+@endpush

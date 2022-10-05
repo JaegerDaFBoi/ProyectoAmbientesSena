@@ -29,7 +29,21 @@ class EditarInstructor extends Component
         'vinculacion' => 'required|alpha',
         'horas' => 'required|numeric|max:200',
         'email' => 'required|email'
-      ];
+    ];
+
+    protected $messages = [
+        'nombre.required' => 'El campo Nombre es obligatorio',
+        'apellidos.required' => 'El campo Apellidos es obligatorio',
+        'cedula.required' => 'El campo Cédula es obligatorio',
+        'cedula.numeric' => 'El campo Cédula solo puede contener números',
+        'area.required' => 'El campo Area es obligatorio',
+        'tipo.required' => 'Debe seleccionar un tipo de instructor',
+        'vinculacion.required' => 'Debe seleccionar un tipo de vinculación',
+        'horas.required' => 'El campo Horas Semanales es obligatorio',
+        'horas.numeric' => 'El campo Horas Semanales solo puede contener números',
+        'email.required' => 'El campo Correo Electronico es obligatorio',
+        'email.email' => 'El campo Correo Electronico debe ser un correo válido'
+    ];
 
     public function mount(Instructor $instructor)
     {
@@ -57,7 +71,7 @@ class EditarInstructor extends Component
         $instructor->email = $this->email;
         $instructor->horassemana = $this->horas;
         $instructor->save();
-        return Redirect::route('instructores.index');
+        return Redirect::route('instructores.index')->with("message", "Instructor Actualizado Correctamente");
     }
 
     public function render()

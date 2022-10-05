@@ -13,6 +13,6 @@ class Instructor extends Model
 
     public function area()
     {
-        return $this->hasOne(Area::class, 'fk_area');
+        return $this->hasOne(Area::class, 'id');
     }
 }

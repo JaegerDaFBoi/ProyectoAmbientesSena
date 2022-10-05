@@ -55,9 +55,15 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="{{ asset('favicon/ms-icon-144x144.png') }}">
     @endif
+    <style>
+        .background {
+            background-image: url({{ asset('img/senafondo.jpg') }});
+            background-size: cover; 
+        }
+    </style>
 </head>
 
-<body class="hold-transition register-page">
+<body class="hold-transition register-page background">
     <div class="register-box">
         <div class="register-logo">
             <img src="{{ asset('img/logosena.jpg') }}" alt="logosena" width="100" height="100">

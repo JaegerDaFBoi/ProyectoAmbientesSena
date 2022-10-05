@@ -11,6 +11,7 @@ use Livewire\Component;
 class TablaInstructores extends Component
 {
 
+    public $infoInstructor = false;
     public $idInstructor;
     public $nombre;
     public $apellidos;
@@ -25,18 +26,22 @@ class TablaInstructores extends Component
     // Metodo para asignar datos del instructor a propiedades para mostrar informacion en la vista
     public function setInstructor($id)
     {
-        
+        $this->infoInstructor = true;
         $this->idInstructor = $id;
-        $instructor = DB::table('instructors')->where('id', $id)->first();
+        $instructor = Instructor::find($id);
         $this->nombre = $instructor->nombre;
         $this->apellidos = $instructor->apellidos;
         $this->cedula = $instructor->cedula;
-        $areainstructor = DB::table('areas')->where('id', $instructor->fk_area)->first();
-        $this->area = $areainstructor->nombre;
+        $this->area = $instructor->area->nombre;
         $this->tipo = $instructor->tipo;
         $this->vinculacion = $instructor->vinculacion;
         $this->horassemana = $instructor->horassemana;
         $this->email = $instructor->email;
+    }
+
+    public function cerrar()
+    {
+        $this->infoInstructor = false;
     }
 
     public function borrarInstructor($id)
@@ -44,7 +49,7 @@ class TablaInstructores extends Component
         $instructor = Instructor::where('isEliminated', false)->where('id', $id)->first();
         $instructor->isEliminated = true;
         $instructor->save();
-        return Redirect::route('instructores.index');
+        return Redirect::route('instructores.index')->with("message", "Instructor Eliminado Correctmente");
     }
 
     public function render()

@@ -5,18 +5,14 @@
         </div>
         <div class="card-body">
             @if ($errors->any())
-            <div class="alert alert-warning" role="alert">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <p class="text-dark">Oops! Hay errores en el registro.</p>
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            <x-adminlte-alert theme="warning" title="Atención" dismissable>
+                <p class="text-dark">Oops! Hay errores en el registro.</p>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </x-adminlte-alert>
             @endif
             <form wire:submit.prevent='editInstructor({{ $idinstructor }})' method="post">
                 <div class="row">

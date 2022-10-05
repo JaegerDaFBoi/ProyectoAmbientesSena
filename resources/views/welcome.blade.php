@@ -55,10 +55,16 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="{{ asset('favicon/ms-icon-144x144.png') }}">
     @endif
-
+    <style>
+        .background {
+            background-image: url({{ asset('img/senafondo.jpg') }});
+            background-size: cover;
+            
+        }
+    </style>
 </head>
 
-<body class="">
+<body class="background">
     <div class="wrapper">
         <section class="content-header">
             <div class="container-fluid">
@@ -67,7 +73,7 @@
         </section>
         <div class="container">
             <div class="row justify-content-center align-items-center m-auto">
-                <div class="col-auto bg-dark p-5">
+                <div class="col-auto bg-navy p-5">
                     <div class="card">
                         <div class="card-header" style="background-color: #F25F16;">
                             <h1>Portal de Horarios </h1>
