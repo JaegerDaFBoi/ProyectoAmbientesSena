@@ -13,6 +13,6 @@ class Event extends Model
 
     public function asignacion()
     {
-        return $this->hasOne(Assignment::class, 'fk_asignacion');
+        return $this->hasOne(Assignment::class, 'id');
     }
 }

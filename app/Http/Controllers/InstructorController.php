@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Assignment;
+use App\Models\Card;
 use App\Models\Event;
 use App\Models\Instructor;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class InstructorController extends Controller
@@ -90,5 +92,42 @@ class InstructorController extends Controller
     public function destroy(Instructor $instructor)
     {
         //
+    }
+
+    /**
+     * Search for an event with assignment information
+     * 
+     * @param \App\Models\Event $eventid
+     * @return \Illuminate\Http\Response
+     */
+    public function searchEvent($eventid)
+    {
+        $data = [];
+        $event = Event::find($eventid);
+        $assignment = $event->asignacion;
+        $instructor = $assignment->instructor;
+        $ficha = $assignment->ficha;
+        $programa = $ficha->programa->nombre;
+        $competencia = $assignment->competencia->descripcion;
+        $resultado = $assignment->resultado->descripcion;
+        $ambiente = $assignment->ambiente->nombre;
+        $nombreinstructor = $instructor->nombre . " " . $instructor->apellidos;
+        $fecha = $event->start;
+        $newfecha = Carbon::parse($fecha)->format('d/m/Y');
+        $horainicio = $event->start;
+        $horafin = $event->end;
+        $newhorainicio = Carbon::parse($horainicio)->format('h:i A');
+        $newhorafin = Carbon::parse($horafin)->format('h:i A');
+        $data['idevento'] = $event->id;
+        $data['fecha'] = $newfecha;
+        $data['inicioevento'] = $newhorainicio;
+        $data['finevento'] = $newhorafin;
+        $data['instructor'] = $nombreinstructor;
+        $data['ficha'] = $ficha->numero;
+        $data['programa'] = $programa;
+        $data['competencia'] = $competencia;
+        $data['resultado'] = $resultado;
+        $data['ambiente'] = $ambiente;
+        return response()->json($data);
     }
 }

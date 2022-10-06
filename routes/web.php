@@ -49,6 +49,7 @@ Route::middleware([
                 Route::get('/create', 'create')->name('create');
                 Route::get('/{instructor}/edit', 'edit')->name('edit');
                 Route::get('/{instructor}/horarios', 'show')->name('horarios');
+                Route::get('/{eventid}/evento', 'searchEvent')->name('evento');
             });
         });
     });
