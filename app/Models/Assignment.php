@@ -38,6 +38,6 @@ class Assignment extends Model
 
     public function ambiente()
     {
-        return $this->hasOne(Environment::class, 'id');
+        return $this->hasOne(Environment::class, 'id', 'fk_ambiente');
     }
 }

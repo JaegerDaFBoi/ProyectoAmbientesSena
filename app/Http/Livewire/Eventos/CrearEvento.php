@@ -14,6 +14,8 @@ class CrearEvento extends Component
 {
 
     public $formularioEvento = false;
+    public $formularioOpcional = false;
+    public $formularioTitulada = false;
     public $fichaSeleccionada;
     public $programaFormacion;
     public $competencias;
@@ -24,10 +26,22 @@ class CrearEvento extends Component
     public $resultadoAsignacion;
     public $instructorSeleccionado;
     public $ambienteSeleccionado;
+    public $tipo;
 
     public function mostrarFormulario()
     {
         $this->formularioEvento = true;
+    }
+
+    public function cambiarFormulario()
+    {
+        if ($this->tipo == "Titulada") {
+            $this->formularioTitulada = true;
+            $this->formularioOpcional = false;
+        } else {
+            $this->formularioOpcional = true;
+            $this->formularioTitulada = false;
+        }
     }
 
     public function seleccionarPrograma()

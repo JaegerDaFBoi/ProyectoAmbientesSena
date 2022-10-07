@@ -3,8 +3,8 @@
         <div id="instructorCalendar">
 
         </div>
-        <x-adminlte-modal id="modalMin" title="Información del evento" icon="fas fa-calendar-check" theme="orange">
-            <div class="row">
+        <x-adminlte-modal id="modalEvento" title="Información del evento" icon="fas fa-calendar-check" theme="orange">
+            <div class="row" >
                 <div class="col-md-12">
                     <p><strong>Fecha del evento: </strong><span id="fechaevento"></span></p>
                 </div>
@@ -19,13 +19,13 @@
                     <p><span id="finevento"></span></p>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" id="ficha">
                 <div class="col-md-12">
                     <p><strong>Ficha de formación # </strong><span id="fichaevento"></span></p>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12" id="programa">
                     <p><strong>Programa de formación: </strong><span id="programaevento"></span></p>
                 </div>
             </div>
@@ -39,16 +39,28 @@
                     <p><strong>Ambiente asignado: </strong><span id="ambienteevento"></span></p>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" id="competencia">
                 <div class="col-md-12">
                     <p><strong>Competencia a desarrollar</strong></p>
                     <p><span id="competenciaevento"></span></p>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12" id="resultado">
                     <p><strong>Resultado de aprendizaje</strong></p>
                     <p><span id="resultadoevento"></span></p>
+                </div>
+            </div>
+            <div class="row" id="titulo">
+                <div class="col-md-12">
+                    <p><strong>Titulo</strong></p>
+                    <p><span id="tituloevento"></span></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p><strong>Descripción del evento</strong></p>
+                    <p><span id="descripcionevento"></span></p>
                 </div>
             </div>
         </x-adminlte-modal>
@@ -87,16 +99,38 @@
                         dataType: 'json',
                         success: function(data) {
                             console.log(data);
-                            $('#modalMin').modal('show');
-                            $('#fichaevento').text(data.ficha);
-                            $('#programaevento').text(data.programa);
-                            $('#instructorevento').text(data.instructor);
-                            $('#competenciaevento').text(data.competencia);
-                            $('#resultadoevento').text(data.resultado);
-                            $('#ambienteevento').text(data.ambiente);
-                            $('#inicioevento').text(data.inicioevento);
-                            $('#finevento').text(data.finevento);
-                            $('#fechaevento').text(data.fecha);
+                            $('#modalEvento').modal('show');
+                            if (data.tipo == "Titulada") {
+                                $('#fichaevento').text(data.ficha);
+                                $('#programaevento').text(data.programa);
+                                $('#instructorevento').text(data.instructor);
+                                $('#competenciaevento').text(data.competencia);
+                                $('#resultadoevento').text(data.resultado);
+                                $('#ambienteevento').text(data.ambiente);
+                                $('#inicioevento').text(data.inicioevento);
+                                $('#finevento').text(data.finevento);
+                                $('#fechaevento').text(data.fecha);
+                                $('#descripcionevento').text(data.descripcion);
+                                $('#titulo').hide();
+                                $('#ficha').show();
+                                $('#programa').show();
+                                $('#competencia').show();
+                                $('#resultado').show();
+                            } else {
+                                $('#tituloevento').text(data.titulo);
+                                $('#instructorevento').text(data.instructor);
+                                $('#ambienteevento').text(data.ambiente);
+                                $('#inicioevento').text(data.inicioevento);
+                                $('#finevento').text(data.finevento);
+                                $('#fechaevento').text(data.fecha);
+                                $('#descripcionevento').text(data.descripcion);
+                                $('#ficha').hide();
+                                $('#programa').hide();
+                                $('#competencia').hide();
+                                $('#resultado').hide();
+                                $('#titulo').show();
+                            }
+
                         },
                         error: function(data) {
                             console.log(data)
