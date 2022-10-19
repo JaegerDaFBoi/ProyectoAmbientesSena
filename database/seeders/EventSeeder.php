@@ -29,6 +29,13 @@ class EventSeeder extends Seeder
                 "start" => "2022-10-06 18:00:00",
                 "end" => "2022-10-06 22:00:00",
                 "fk_assignment" => 2,
+            ],
+            [
+                "title" => "2207208 - MAURICIO VALENCIA ZULUAGA",
+                "description" => "Descripcion del evento",
+                "start" => "2022-10-18 18:00:00",
+                "end" => "2022-10-18 22:00:00",
+                "fk_assignment" => 10,
             ]
         ];
 

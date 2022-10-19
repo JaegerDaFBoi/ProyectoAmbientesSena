@@ -124,6 +124,11 @@ class InstructorController extends Controller
             $data['instructor'] = $nombreinstructor;
             $data['ambiente'] = $ambiente;
             $data['titulo'] = $titulo;
+            if ($descripcion == "") {
+                $data['descripcion'] = "";
+            } else {
+                $data['descripcion'] = $descripcion;
+            }
             $data['descripcion'] = $descripcion;
             $data['tipo'] = $assignment->tipo;
         } else {
@@ -151,7 +156,11 @@ class InstructorController extends Controller
             $data['competencia'] = $competencia;
             $data['resultado'] = $resultado;
             $data['ambiente'] = $ambiente;
-            $data['descripcion'] = $descripcion;
+            if ($descripcion == "") {
+                $data['descripcion'] = "";
+            } else {
+                $data['descripcion'] = $descripcion;
+            }
             $data['tipo'] = $assignment->tipo;
         }
 

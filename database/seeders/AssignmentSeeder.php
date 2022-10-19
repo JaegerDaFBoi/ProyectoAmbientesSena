@@ -33,6 +33,15 @@ class AssignmentSeeder extends Seeder
                 "fk_ambiente" => 1,
                 "tipo" => "Titulada",
                 "descripcion" => "La descripcion del evento es opcional"
+            ],
+            [
+                "fk_ficha" => 1,
+                "fk_competencia" => 2,
+                "fk_resultado" => 3,
+                "fk_instructor" => 2,
+                "fk_ambiente" => 2,
+                "tipo" => "Titulada",
+                "descripcion" => "La descripcion del evento es opcional"
             ]
         ];
 
