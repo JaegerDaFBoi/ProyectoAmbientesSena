@@ -59,7 +59,7 @@ class InstructorController extends Controller
         }
         $events = Event::select()->whereIn('fk_assignment', $ids)->get();
         json_encode($events);
-        return view('instructores.horarios', compact('events'));
+        return view('instructores.horarios', compact('events', 'instructor'));
     }
 
     /**

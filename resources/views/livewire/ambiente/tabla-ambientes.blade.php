@@ -20,7 +20,10 @@
                                 <button type="button" wire:click='mostrarEdicion({{ $ambiente->id }})'>
                                     <i class="fas fa-edit"></i>
                                 </button>
-                                <a href="{{ route('ambientes.horarios', $ambiente) }}">Ver Horarios</a>
+                                <button type="button">
+                                    <a href="{{ route('ambientes.horarios', $ambiente) }}" style="color: #000000">Ver Horarios</a>
+                                    <i class="fas fa-user-clock"></i>
+                                </button>
                             </td>
                         </tr>
                     @endforeach

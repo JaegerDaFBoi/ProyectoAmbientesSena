@@ -59,6 +59,7 @@ Route::middleware([
             Route::controller(EnvironmentController::class)->group(function () {
                 Route::get('/index', 'index')->name('index');
                 Route::get('/{ambiente}/horarios', 'show')->name('horarios');
+                Route::get('/{eventid}/evento', 'searchEvent')->name('evento');
             });
         });
     });
@@ -80,7 +81,8 @@ Route::middleware([
                 Route::get('/create', 'create')->name('create');
                 Route::post('/store', 'store')->name('store');
                 Route::get('/{ficha}/edit', 'edit')->name('edit');
-                Route::get('/{ficha}/horarios')->name('horarios');
+                Route::get('/{ficha}/horarios', 'show')->name('horarios');
+                Route::get('/{eventid}/evento', 'searchEvent')->name('evento');
             });
         });
     });
