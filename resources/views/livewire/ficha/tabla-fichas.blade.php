@@ -28,7 +28,10 @@
                             <button type="button" data-toggle="modal" data-target="#modalEliminar{{ $ficha->id }}">
                                 <i class="far fa-trash-alt"></i>
                             </button>
-                            <a href="{{ route('fichas.horarios', $ficha) }}">Ver Horarios</a>
+                            <button type="button">
+                                <a href="{{ route('fichas.horarios', $ficha) }}" style="color: #000000">Ver Horarios</a>
+                                <i class="fas fa-user-clock"></i>
+                            </button>
                             <x-adminlte-modal id="modalEliminar{{ $ficha->id }}" title="Eliminar registro de instructor" size="md" theme="orange" static-backdrop>
                                 <h3 class="text-dark">¿Está seguro que desea eliminar este registro?</h3>
                                 <x-slot name="footerSlot">
