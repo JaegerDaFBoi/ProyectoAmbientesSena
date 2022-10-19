@@ -26,7 +26,7 @@
             @csrf
             <livewire:eventos.crear-evento />
             @if (session('message'))
-                <x-adminlte-alert class="bg-orange" icon="fa fa-lg fa-thumbs-up" title="Hecho!" dismissable>
+                <x-adminlte-alert class="bg-orange" icon="fas fa-exclamation-triangle" title="Atención!" dismissable>
                     {{ session('message') }}
                 </x-adminlte-alert>
             @endif

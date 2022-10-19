@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Assignment;
 use App\Models\Card;
+use App\Models\Competence;
 use App\Models\Event;
 use App\Models\Instructor;
+use App\Models\LearningOutcome;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -104,13 +106,17 @@ class InstructorController extends Controller
     {
         $data = [];
         $event = Event::find($eventid);
-        $assignment = Assignment::where('id',$event->fk_assignment)->first();
+        $assignment = Assignment::where('id', $event->fk_assignment)->first();
         if ($assignment->tipo == "Complementaria" || $assignment->tipo == "Adicionales") {
             $instructor = $assignment->instructor;
             $ambiente = $assignment->ambiente->nombre;
             $nombreinstructor = $instructor->nombre . " " . $instructor->apellidos;
             $titulo = $event->title;
-            $descripcion = $event->description;
+            if (empty($event->description)) {
+                $descripcion = " ";
+            } else {
+                $descripcion = $event->description;
+            }
             $fecha = $event->start;
             $newfecha = Carbon::parse($fecha)->format('d/m/Y');
             $horainicio = $event->start;
@@ -124,22 +130,23 @@ class InstructorController extends Controller
             $data['instructor'] = $nombreinstructor;
             $data['ambiente'] = $ambiente;
             $data['titulo'] = $titulo;
-            if ($descripcion == "") {
-                $data['descripcion'] = "";
-            } else {
-                $data['descripcion'] = $descripcion;
-            }
             $data['descripcion'] = $descripcion;
             $data['tipo'] = $assignment->tipo;
         } else {
             $instructor = $assignment->instructor;
             $ficha = $assignment->ficha;
             $programa = $ficha->programa->nombre;
-            $competencia = $assignment->competencia->descripcion;
-            $resultado = $assignment->resultado->descripcion;
+            $competencia = Competence::where('id', $assignment->fk_competencia)->first();
+            $descripcioncompetencia = $competencia->descripcion;
+            $resultado = LearningOutcome::where('id', $assignment->fk_resultado)->first();
+            $descripcionresultado = $resultado->descripcion;
             $ambiente = $assignment->ambiente->nombre;
             $nombreinstructor = $instructor->nombre . " " . $instructor->apellidos;
-            $descripcion = $event->description;
+            if (empty($event->description)) {
+                $descripcion = " ";
+            } else {
+                $descripcion = $event->description;
+            }
             $fecha = $event->start;
             $newfecha = Carbon::parse($fecha)->format('d/m/Y');
             $horainicio = $event->start;
@@ -153,14 +160,10 @@ class InstructorController extends Controller
             $data['instructor'] = $nombreinstructor;
             $data['ficha'] = $ficha->numero;
             $data['programa'] = $programa;
-            $data['competencia'] = $competencia;
-            $data['resultado'] = $resultado;
+            $data['competencia'] = $descripcioncompetencia;
+            $data['resultado'] = $descripcionresultado;
             $data['ambiente'] = $ambiente;
-            if ($descripcion == "") {
-                $data['descripcion'] = "";
-            } else {
-                $data['descripcion'] = $descripcion;
-            }
+            $data['descripcion'] = $descripcion;
             $data['tipo'] = $assignment->tipo;
         }
 

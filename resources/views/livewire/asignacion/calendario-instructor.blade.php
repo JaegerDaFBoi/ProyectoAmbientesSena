@@ -110,7 +110,11 @@
                                 $('#inicioevento').text(data.inicioevento);
                                 $('#finevento').text(data.finevento);
                                 $('#fechaevento').text(data.fecha);
-                                $('#descripcionevento').text(data.descripcion);
+                                if (data.descripcion == " ") {
+                                    $('#descripcionevento').text("El evento no cuenta con descripción")
+                                } else {
+                                    $('#descripcionevento').text(data.descripcion);
+                                }
                                 $('#titulo').hide();
                                 $('#ficha').show();
                                 $('#programa').show();
@@ -123,7 +127,11 @@
                                 $('#inicioevento').text(data.inicioevento);
                                 $('#finevento').text(data.finevento);
                                 $('#fechaevento').text(data.fecha);
-                                $('#descripcionevento').text(data.descripcion);
+                                if (data.descripcion == " ") {
+                                    $('#descripcionevento').text("El evento no cuenta con descripción")
+                                } else {
+                                    $('#descripcionevento').text(data.descripcion);
+                                }
                                 $('#ficha').hide();
                                 $('#programa').hide();
                                 $('#competencia').hide();
