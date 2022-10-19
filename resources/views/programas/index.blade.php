@@ -7,7 +7,7 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1 class="m-0 text-dark">Programas de Formación</h1>
+        <h1 class="m-0 text-navy">Programas de Formación</h1>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
@@ -25,7 +25,7 @@
   <div class="row mb-3">
     <div class="col-md-2">
       <a href="{{ route('programas.create') }}">
-        <button type="button" class="btn btn-block btn-md" style="background-color: #F05C12;">
+        <button type="button" class="btn btn-block btn-md bg-gradient-orange">
           Crear Programa
         </button>
       </a>

@@ -7,7 +7,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Lista de Instructores</h1>
+                    <h1 class="m-0 text-navy">Lista de Instructores</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -25,14 +25,14 @@
         <div class="row mb-3">
             <div class="col-md-2">
                 <a href="{{ route('instructores.create') }}">
-                    <button type="button" class="btn btn-block btn-md" style="background-color: #F05C12;">
+                    <button type="button" class="btn btn-block bg-gradient-orange btn-md">
                         Crear Instructor
                     </button>
                 </a>
             </div>
         </div>
         @if (session('message'))
-            <x-adminlte-alert class="bg-orange" icon="fa fa-lg fa-thumbs-up" title="Hecho!" dismissable>
+            <x-adminlte-alert class="bg-gradient-orange" icon="fa fa-lg fa-thumbs-up" title="Hecho!" dismissable>
                 {{ session('message') }}
             </x-adminlte-alert>
         @endif

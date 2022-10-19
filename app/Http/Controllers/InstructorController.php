@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 class InstructorController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a list of instructors.
      *
      * @return \Illuminate\Http\Response
      */
@@ -24,7 +24,7 @@ class InstructorController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating an instructor.
      *
      * @return \Illuminate\Http\Response
      */
@@ -45,25 +45,26 @@ class InstructorController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the events assigned to an instructor.
      *
      * @param  \App\Models\Instructor  $instructor
      * @return \Illuminate\Http\Response
      */
     public function show(Instructor $instructor)
     {
-        $ids = [];
+        
+        $assignmentIds = []; 
         $assignments = Assignment::where('fk_instructor', $instructor->id)->get();
         foreach ($assignments as $assignment) {
-            array_push($ids, $assignment->id);
+            array_push($assignmentIds, $assignment->id);
         }
-        $events = Event::select()->whereIn('fk_assignment', $ids)->get();
+        $events = Event::select()->whereIn('fk_assignment', $assignmentIds)->get();
         json_encode($events);
         return view('instructores.horarios', compact('events', 'instructor'));
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified instructor.
      *
      * @param  \App\Models\Instructor  $instructor
      * @return \Illuminate\Http\Response

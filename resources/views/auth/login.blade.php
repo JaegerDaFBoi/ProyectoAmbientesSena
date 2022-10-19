@@ -1,3 +1,5 @@
+<!-- Login Page -->
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -71,21 +73,21 @@
         </div>
     </div>
     <div class="card">
-        <div class="card-body login-card-body">
+        <div class="card-body login-card-body bg-gradient-gray">
             <x-jet-validation-errors class="mb-4" />
             @if (session('status'))
             <div class="mb-4 font-medium text-sm text-green-600">
                 {{ session('status') }}
             </div>
             @endif
-            <p class="login-box-msg">Registre sus datos para iniciar sesión</p>
+            <p class="login-box-msg ">Registre sus datos para iniciar sesión</p>
             <form method="post" action="{{ route('login') }}">
                 @csrf
                 <div class="input-group mb-3">
                     <input type="email" id="email" name="email" class="form-control" placeholder="Correo Electronico" :value="old('email')" required autofocus>
                     <div class="input-group-append">
                         <div class="input-group-text">
-                            <span class="fas fa-envelope"></span>
+                            <span class="fas fa-envelope text-navy"></span>
                         </div>
                     </div>
                 </div>
@@ -93,7 +95,7 @@
                     <input type="password" id="password" name="password" class="form-control" placeholder="Contraseña" required autocomplete="current-password">
                     <div class="input-group-append">
                         <div class="input-group-text">
-                            <span class="fas fa-lock"></span>
+                            <span class="fas fa-lock text-navy"></span>
                         </div>
                     </div>
                 </div>
@@ -107,7 +109,7 @@
                         </div>
                     </div>
                     <div class="col-6">
-                        <button type="submit" class="btn btn-block" style="background-color: #F05C12;">Iniciar Sesión</button>
+                        <button type="submit" class="btn bg-gradient-orange btn-block">Iniciar Sesión</button>
                     </div>
                 </div>
             </form>

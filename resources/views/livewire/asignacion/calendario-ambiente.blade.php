@@ -1,65 +1,74 @@
 <div>
     <div wire:ignore>
-        <div id="ambienteCalendar">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body border border-navy rounded">
+                        <div id="ambienteCalendar" class="border border-navy rounded">
 
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <x-adminlte-modal id="modalEvento" title="Información del evento" icon="fas fa-calendar-check" theme="orange">
-            <div class="row">
+
+        <x-adminlte-modal id="modalEvento" title="Información del evento" icon="fas fa-calendar-check" theme="gradient-orange">
+            <div class="row" >
                 <div class="col-md-12">
-                    <p><strong>Fecha del evento: </strong><span id="fechaevento"></span></p>
+                    <p><strong class="text-navy">Fecha del evento: </strong><span id="fechaevento"></span></p>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <p><strong>Hora de inicio</strong></p>
+                    <p class="text-navy"><strong>Hora de inicio</strong></p>
                     <p><span id="inicioevento"></span></p>
                 </div>
                 <div class="col-md-6">
-                    <p><strong>Hora de fin</strong></p>
+                    <p class="text-navy"><strong>Hora de fin</strong></p>
                     <p><span id="finevento"></span></p>
                 </div>
             </div>
             <div class="row" id="ficha">
                 <div class="col-md-12">
-                    <p><strong>Ficha de formación # </strong><span id="fichaevento"></span></p>
+                    <p><strong class="text-navy">Ficha de formación # </strong><span id="fichaevento"></span></p>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12" id="programa">
-                    <p><strong>Programa de formación: </strong><span id="programaevento"></span></p>
+                    <p><strong class="text-navy">Programa de formación: </strong><span id="programaevento"></span></p>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <p><strong>Instructor asignado: </strong><span id="instructorevento"></span></p>
+                    <p><strong class="text-navy">Instructor asignado: </strong><span id="instructorevento"></span></p>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <p><strong>Ambiente asignado: </strong><span id="ambienteevento"></span></p>
+                    <p><strong class="text-navy">Ambiente asignado: </strong><span id="ambienteevento"></span></p>
                 </div>
             </div>
             <div class="row" id="competencia">
                 <div class="col-md-12">
-                    <p><strong>Competencia a desarrollar</strong></p>
+                    <p class="text-navy"><strong>Competencia a desarrollar</strong></p>
                     <p><span id="competenciaevento"></span></p>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12" id="resultado">
-                    <p><strong>Resultado de aprendizaje</strong></p>
+                    <p class="text-navy"><strong>Resultado de aprendizaje</strong></p>
                     <p><span id="resultadoevento"></span></p>
                 </div>
             </div>
             <div class="row" id="titulo">
                 <div class="col-md-12">
-                    <p><strong>Titulo</strong></p>
+                    <p class="text-navy"><strong>Titulo</strong></p>
                     <p><span id="tituloevento"></span></p>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <p><strong>Descripción del evento</strong></p>
+                    <p class="text-navy"><strong>Descripción del evento</strong></p>
                     <p><span id="descripcionevento"></span></p>
                 </div>
             </div>

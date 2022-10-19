@@ -26,6 +26,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// JetStream Dashboard Auth Middleware
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -36,11 +37,13 @@ Route::middleware([
     })->name('dashboard');
 });
 
+//Auth Middleware for routes
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
+
     //Rutas Instructores
     Route::prefix('instructores')->group(function () {
         Route::name('instructores.')->group(function () {
@@ -53,6 +56,7 @@ Route::middleware([
             });
         });
     });
+
     //Rutas Ambientes
     Route::prefix('ambientes')->group(function () {
         Route::name('ambientes.')->group(function () {
@@ -63,6 +67,7 @@ Route::middleware([
             });
         });
     });
+
     //Rutas Programas
     Route::prefix('programas')->group(function () {
         Route::name('programas.')->group(function () {
@@ -73,6 +78,7 @@ Route::middleware([
             });
         });
     });
+
     //Rutas Fichas
     Route::prefix('fichas')->group(function () {
         Route::name('fichas.')->group(function () {
@@ -86,8 +92,10 @@ Route::middleware([
             });
         });
     });
+
     //Rutas Competencias
     Route::get('/competencias/{idprograma}/index', [CompetenceController::class, 'index'])->name('competencias.index');
+
     //Rutas Resultados
     Route::prefix('resultados')->group(function () {
         Route::name('resultados.')->group(function () {
@@ -97,6 +105,7 @@ Route::middleware([
             });
         });
     });
+    
     //Rutas Calendario
     Route::prefix('eventos')->group(function () {
         Route::name('eventos.')->group(function () {

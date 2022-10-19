@@ -1,3 +1,5 @@
+<!-- Register Page -->
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -69,7 +71,7 @@
             <img src="{{ asset('img/logosena.jpg') }}" alt="logosena" width="100" height="100">
         </div>
         <div class="card">
-            <div class="card-body register-card-body">
+            <div class="card-body register-card-body bg-gradient-gray">
                 <p class="login-box-msg">Registrar un nuevo usuario</p>
                 <x-jet-validation-errors class="mb-4" />
                 <form method="post" action="{{ route('register') }}">
@@ -78,7 +80,7 @@
                         <input type="text" class="form-control" id="name" name="name" placeholder="Nombre" :value="old('name')" required autofocus autocomplete="name">
                         <div class="input-group-append">
                             <div class="input-group-text">
-                                <span class="fas fa-user"></span>
+                                <span class="fas fa-user text-navy"></span>
                             </div>
                         </div>
                     </div>
@@ -86,7 +88,7 @@
                         <input type="email" id="email" name="email" class="form-control" :value="old('email')" placeholder="Correo Electronico" required>
                         <div class="input-group-append">
                             <div class="input-group-text">
-                                <span class="fas fa-envelope"></span>
+                                <span class="fas fa-envelope text-navy"></span>
                             </div>
                         </div>
                     </div>
@@ -94,7 +96,7 @@
                         <input type="password" id="password" name="password" class="form-control" placeholder="Contraseña" required autocomplete="new-password">
                         <div class="input-group-append">
                             <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
+                                <span class="fas fa-lock text-navy"></span>
                             </div>
                         </div>
                     </div>
@@ -102,13 +104,13 @@
                         <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" placeholder="Confirme contraseña" required autocomplete="new-password">
                         <div class="input-group-append">
                             <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
+                                <span class="fas fa-lock text-navy"></span>
                             </div>
                         </div>
                     </div>
                     <div class="row justify-content-center">
                         <div class="col-6">
-                            <button type="submit" class="btn btn-block" style="background-color: #F05C12;">Registrarse</button>
+                            <button type="submit" class="btn bg-gradient-orange btn-block"">Registrarse</button>
                         </div>
                     </div>
                 </form>

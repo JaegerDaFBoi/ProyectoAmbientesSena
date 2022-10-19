@@ -127,9 +127,9 @@ return [
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-dark-navy elevation-4',
+    'classes_sidebar' => ' text-orange bg-gradient-navy elevation-4',
     'classes_sidebar_nav' => '',
-    'classes_topnav' => 'navbar-orange navbar-light',
+    'classes_topnav' => 'bg-gradient-orange  navbar-light',
     'classes_topnav_nav' => 'navbar-expand',
     'classes_topnav_container' => 'container',
 
@@ -227,11 +227,6 @@ return [
     'menu' => [
         // Navbar items:
         [
-            'type'         => 'navbar-search',
-            'text'         => 'Buscar',
-            'topnav_right' => true,
-        ],
-        [
             'type'         => 'fullscreen-widget',
             'topnav_right' => true,
         ],
@@ -250,79 +245,20 @@ return [
             'icon' => 'fas fa-chalkboard-teacher',
         ],
         [
-            'text' => 'Programas de Formación',
-            'route' => 'programas.index',
-            'icon' => 'fas fa-book-open',
-        ],
-        [
             'text' => 'Fichas de Formación',
             'route' => 'fichas.index',
             'icon' => 'fas fa-user-graduate'
         ],
-        ['header' => 'account_settings'],
         [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
+            'text' => 'Programas de Formación',
+            'route' => 'programas.index',
+            'icon' => 'fas fa-book-open',
         ],
-        [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-            ],
-        ],
-        ['header' => 'labels'],
+        ['header' => 'Calendario'],
         [
             'text'       => 'Eventos',
-            'icon_color' => 'red',
+            'icon' => 'far fa-calendar-alt',
             'route'        => 'eventos.index',
-        ],
-        [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => '#',
         ],
     ],
 

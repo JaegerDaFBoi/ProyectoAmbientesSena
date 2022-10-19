@@ -8,13 +8,13 @@
                 <table class="table table-bordered table-dark table-striped table-hover">
                     <thead>
                         <tr>
-                            <th class="text-center">#</th>
-                            <th>Código</th>
+                            <th class="text-center text-orange">#</th>
+                            <th class="text-orange">Código</th>
                             @if(!$info)
-                            <th>Nombre</th>
-                            <th>Nivel de Formación</th>
+                            <th class="text-orange">Nombre</th>
+                            <th class="text-orange">Nivel de Formación</th>
                             @endif
-                            <th>Opciones</th>
+                            <th class="text-orange">Opciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -27,15 +27,15 @@
                             <td>{{ $programa->nivelformacion }}</td>
                             @endif
                             <td>
-                                <button type="button" wire:click="mostrarInfo({{ $programa->id }})">
+                                <button type="button" class="bg-gradient-navy" wire:click="mostrarInfo({{ $programa->id }})">
                                     <i class="fas fa-search"></i>
                                 </button>
                                 <a href="{{ route('programas.edit', $programa) }}">
-                                    <button type="button">
+                                    <button type="button" class="bg-gradient-orange">
                                         <i class="fas fa-edit"></i>
                                     </button>
                                 </a>
-                                <button type="button" data-toggle="modal" data-target="#modalEliminar{{ $programa->id }}">
+                                <button type="button" class="bg-gradient-danger" data-toggle="modal" data-target="#modalEliminar{{ $programa->id }}">
                                     <i class="far fa-trash-alt"></i>
                                 </button>
                                 <x-adminlte-modal id="modalEliminar{{ $programa->id }}" title="Eliminar programa de formación" size="md" theme="orange" static-backdrop>

@@ -9,10 +9,10 @@
                 <table id="tablaInstructores" class="table table-bordered table-dark table-striped table-hover table-responsive">
                     <thead>
                         <tr>
-                            <th class="text-center">#</th>
-                            <th>Nombre</th>
-                            <th>Apellidos</th>
-                            <th>Opciones</th>
+                            <th class="text-center text-orange">#</th>
+                            <th class="text-orange">Nombre</th>
+                            <th class="text-orange">Apellidos</th>
+                            <th class="text-orange">Opciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -22,19 +22,19 @@
                                 <td>{{ $instructor->nombre }}</td>
                                 <td>{{ $instructor->apellidos }}</td>
                                 <td>
-                                    <button type="button" wire:click="setInstructor({{ $instructor->id }})">
+                                    <button type="button" class="bg-gradient-navy" wire:click="setInstructor({{ $instructor->id }})">
                                         <i class="fas fa-search"></i>
                                     </button>
                                     <a href="{{ route('instructores.edit', $instructor) }}">
-                                        <button type="button">
+                                        <button type="button" class="bg-gradient-orange">
                                             <i class="fas fa-edit"></i>
                                         </button>
                                     </a>
-                                    <button type="button" data-toggle="modal"
+                                    <button type="button" class="bg-gradient-danger" data-toggle="modal"
                                         data-target="#modalEliminar{{ $instructor->id }}">
                                         <i class="far fa-trash-alt"></i>
                                     </button>
-                                    <button type="button">
+                                    <button type="button" class="bg-gradient-info">
                                         <a href="{{ route('instructores.horarios', $instructor) }}" style="color: #000000">Ver Horarios</a>
                                         <i class="fas fa-user-clock"></i>
                                     </button>
@@ -46,8 +46,7 @@
                                         <x-slot name="footerSlot">
                                             <form wire:submit.prevent="borrarInstructor({{ $instructor->id }})"
                                                 method="post">
-                                                <button type="submit" class="btn btn-block"
-                                                    style="background-color: #F05C12;">
+                                                <button type="submit" class="btn btn-block bg-gradient-orange">
                                                     Eliminar
                                                 </button>
                                             </form>
@@ -63,52 +62,52 @@
         @if ($infoInstructor)
         <div class="col-md-5">
             <div class="card">
-                <div class="card-header" style="background-color: #F05C12;">
+                <div class="card-header bg-gradient-orange" >
                     <div class="row">
                         <div class="col-sm-10">
                             <h3 class="card-title text-dark">Información del instructor</h3>
                         </div>
                         <div class="col-sm-2">
-                            <button type="button" wire:click='cerrar'>
-                                <i class="fas fa-window-close"></i>
+                            <button type="button" class="bg-gradient-danger" wire:click='cerrar'>
+                                <i class="fas fa-times"></i>
                             </button>
                         </div>
                     </div>
                 </div>
-                <div class="card-body">
+                <div class="card-body bg-gradient-gray">
                     <div class="row">
                         <div class="col-sm-12">
-                            <label class="text-dark">Nombre</label>
+                            <label class="text-navy">Nombre</label>
                             <p>{{ $nombre }} {{ $apellidos }}</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
-                            <label class="text-dark">Cédula</label>
+                            <label class="text-navy">Cédula</label>
                             <p>{{ $cedula }}</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
-                            <label class="text-dark">Correo Electrónico</label>
+                            <label class="text-navy">Correo Electrónico</label>
                             <p>{{ $email }}</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
-                            <label class="text-dark">Area a la que pertenece</label>
+                            <label class="text-navy">Area a la que pertenece</label>
                             <p>{{ $area }}</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
-                            <label class="text-dark">Tipo de contrato</label>
+                            <label class="text-navy">Tipo de contrato</label>
                             <p>{{ $tipo }} - {{ $vinculacion }} </p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
-                            <label class="text-dark">Horas Semanales</label>
+                            <label class="text-navy">Horas Semanales</label>
                             <p>{{ $horassemana }}</p>
                         </div>
                     </div>

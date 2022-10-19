@@ -3,11 +3,11 @@
         <div class="col-md-12">
             <table class="table table-bordered table-dark table-striped table-hover">
                 <thead>
-                    <th class="text-center">#</th>
-                    <th>Nombre</th>
-                    <th>Tipo de Ambiente</th>
-                    <th>Capacidad</th>
-                    <th>Opciones</th>
+                    <th class="text-center text-orange">#</th>
+                    <th class="text-orange">Nombre</th>
+                    <th class="text-orange">Tipo de Ambiente</th>
+                    <th class="text-orange">Capacidad</th>
+                    <th class="text-orange">Opciones</th>
                 </thead>
                 <tbody>
                     @foreach ($ambientes as $ambiente)
@@ -17,11 +17,13 @@
                             <td>{{ $ambiente->tipo }}</td>
                             <td>{{ $ambiente->aforo }}</td>
                             <td>
-                                <button type="button" wire:click='mostrarEdicion({{ $ambiente->id }})'>
+                                <button type="button" class="bg-gradient-orange"
+                                    wire:click='mostrarEdicion({{ $ambiente->id }})'>
                                     <i class="fas fa-edit"></i>
                                 </button>
-                                <button type="button">
-                                    <a href="{{ route('ambientes.horarios', $ambiente) }}" style="color: #000000">Ver Horarios</a>
+                                <button type="button" class="bg-gradient-info">
+                                    <a href="{{ route('ambientes.horarios', $ambiente) }}" style="color: #000000">Ver
+                                        Horarios</a>
                                     <i class="fas fa-user-clock"></i>
                                 </button>
                             </td>
@@ -35,10 +37,10 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header justify-content-center" style="background-color: #F05C12;">
-                        <h4 class="card-title">Modificación de Ambiente</h4>
+                    <div class="card-header justify-content-center bg-gradient-orange">
+                        <h4 class="card-title text-navy">Modificación de Ambiente</h4>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body bg-gradient-gray">
                         @if ($errors->any())
                             <div class="alert alert-warning" role="alert">
                                 <p class="text-dark">Oops! Hay errores en el registro.</p>
@@ -51,13 +53,13 @@
                         @endif
                         <form wire:submit.prevent='editarAmbiente' method="post">
                             <div class="form-group">
-                                <label for="ambienteNombre" class="text-dark">Nombre del Ambiente</label>
+                                <label for="ambienteNombre" class="text-navy">Nombre del Ambiente</label>
                                 <input type="text" class="form-control" id="ambienteNombre" name="ambienteNombre"
                                     wire:model='nombre'>
                             </div>
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label for="tipoAmbiente">Tipo de Ambiente</label>
+                                    <label for="tipoAmbiente" class="text-navy">Tipo de Ambiente</label>
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="tipoAmbiente"
                                             value="Virtual" wire:model='tipo'>
@@ -70,21 +72,20 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="ambienteAforo">Capacidad</label>
+                                    <label for="ambienteAforo" class="text-navy">Capacidad</label>
                                     <input type="number" class="form-control" id="ambienteAforo" name="ambienteAforo"
                                         wire:model='aforo'>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <button type="submit" class="btn btn-block" style="background-color: #F05C12;">
+                                    <button type="submit" class="btn btn-block bg-gradient-orange">
                                         <i class="fas fa-lg fa-save"></i>
                                         Guardar
                                     </button>
                                 </div>
                                 <div class="col-sm-2 float-right">
-                                    <button type="button" class="btn btn-block" wire:click='cerrar'
-                                        style="background-color: #F05C12;">
+                                    <button type="button" class="btn btn-block bg-gradient-orange" wire:click='cerrar'>
                                         Cerrar
                                     </button>
                                 </div>
