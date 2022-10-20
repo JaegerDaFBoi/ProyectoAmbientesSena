@@ -1,12 +1,14 @@
 <div>
     <div class="row">
         @if ($infoInstructor)
-        <div class="col-md-7">
+            <div class="col-md-7">
             @else
-            <div class="col-md-12 justify-self-center">
-                @endif
-            <div wire:ignore>
-                <table id="tablaInstructores" class="table table-bordered table-dark table-striped table-hover table-responsive">
+                <div class="col-md-12 justify-self-center">
+        @endif
+        <div wire:ignore>
+            <div class="container">
+                <table id="tablaInstructores"
+                    class="table table-bordered table-dark table-striped table-hover table-responsive">
                     <thead>
                         <tr>
                             <th class="text-center text-orange">#</th>
@@ -22,7 +24,8 @@
                                 <td>{{ $instructor->nombre }}</td>
                                 <td>{{ $instructor->apellidos }}</td>
                                 <td>
-                                    <button type="button" class="bg-gradient-navy" wire:click="setInstructor({{ $instructor->id }})">
+                                    <button type="button" class="bg-gradient-navy"
+                                        wire:click="setInstructor({{ $instructor->id }})">
                                         <i class="fas fa-search"></i>
                                     </button>
                                     <a href="{{ route('instructores.edit', $instructor) }}">
@@ -35,10 +38,11 @@
                                         <i class="far fa-trash-alt"></i>
                                     </button>
                                     <button type="button" class="bg-gradient-info">
-                                        <a href="{{ route('instructores.horarios', $instructor) }}" style="color: #000000">Ver Horarios</a>
+                                        <a href="{{ route('instructores.horarios', $instructor) }}"
+                                            style="color: #000000">Ver Horarios</a>
                                         <i class="fas fa-user-clock"></i>
                                     </button>
-                                    
+
                                     <x-adminlte-modal id="modalEliminar{{ $instructor->id }}"
                                         title="Eliminar registro de instructor" size="md" theme="orange"
                                         static-backdrop>
@@ -59,10 +63,11 @@
                 </table>
             </div>
         </div>
-        @if ($infoInstructor)
+    </div>
+    @if ($infoInstructor)
         <div class="col-md-5">
             <div class="card">
-                <div class="card-header bg-gradient-orange" >
+                <div class="card-header bg-gradient-orange">
                     <div class="row">
                         <div class="col-sm-10">
                             <h3 class="card-title text-dark">Información del instructor</h3>
@@ -115,8 +120,8 @@
                 </div>
             </div>
         </div>
-        @endif
-    </div>
+    @endif
+</div>
 </div>
 
 @push('js')

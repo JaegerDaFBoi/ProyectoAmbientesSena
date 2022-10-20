@@ -80,8 +80,10 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div id="calendar">
+                    <div class="card-body border border-navy rounded">
+                        <div id="calendar" class="border border-navy rounded">
 
+                        </div>
                     </div>
                 </div>
             </div>
