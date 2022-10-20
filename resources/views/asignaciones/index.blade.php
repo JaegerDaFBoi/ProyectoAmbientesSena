@@ -7,12 +7,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Asignaciones</h1>
+                    <h1 class="m-0 text-navy">Asignacion de horarios</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Inicio</a></li>
-                        <li class="breadcrumb-item active">Lista de Asignaciones</li>
+                        <li class="breadcrumb-item active">Formulario de horarios</li>
                     </ol>
                 </div>
             </div>
@@ -26,21 +26,21 @@
             @csrf
             <livewire:eventos.crear-evento />
             @if (session('message'))
-                <x-adminlte-alert class="bg-orange" icon="fas fa-exclamation-triangle" title="Atención!" dismissable>
+                <x-adminlte-alert class="bg-gradient-orange" icon="fas fa-exclamation-triangle" title="Atención!" dismissable>
                     {{ session('message') }}
                 </x-adminlte-alert>
             @endif
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header" style="background-color: #F05C12;">
-                            <h3 class="card-title">Datos del evento</h3>
+                        <div class="card-header bg-gradient-orange">
+                            <h3 class="card-title text-navy">Datos del evento</h3>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body bg-gradient-gray">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="fechaInicio">Inicio de evento</label>
+                                        <label for="fechaInicio" class="text-navy">Inicio de evento</label>
                                         <div class="input-group date" id="fechaInicio" data-target-input="nearest">
                                             <input type="text" name="fechaInicio"
                                                 class="form-control datetimepicker-input" data-target="#fechaInicio" />
@@ -53,7 +53,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="fechaFin">Fin de evento</label>
+                                        <label for="fechaFin" class="text-navy">Fin de evento</label>
                                         <div class="input-group date" id="fechaFin" data-target-input="nearest">
                                             <input type="text" name="fechaFin" class="form-control datetimepicker-input"
                                                 data-target="#fechaFin" />
@@ -67,7 +67,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <button type="submit" class="btn btn-sm" style="background-color: #F05C12;">
+                                    <button type="submit" class="btn btn-sm bg-gradient-orange">
                                         Guardar Evento
                                     </button>
                                 </div>
@@ -77,9 +77,16 @@
                 </div>
             </div>
         </form>
-        <div id="calendar">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div id="calendar">
 
+                    </div>
+                </div>
+            </div>
         </div>
+        
     </div>
 @stop
 
