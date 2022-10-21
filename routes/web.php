@@ -53,6 +53,7 @@ Route::middleware([
                 Route::get('/{instructor}/edit', 'edit')->name('edit');
                 Route::get('/{instructor}/horarios', 'show')->name('horarios');
                 Route::get('/{eventid}/evento', 'searchEvent')->name('evento');
+                Route::get('/{instructor}/listahorarios', 'listEvents')->name('listahorarios');
             });
         });
     });

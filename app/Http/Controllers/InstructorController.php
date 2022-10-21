@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Assignment;
 use App\Models\Card;
 use App\Models\Competence;
+use App\Models\Environment;
 use App\Models\Event;
 use App\Models\Instructor;
 use App\Models\LearningOutcome;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class InstructorController extends Controller
 {
@@ -52,8 +55,8 @@ class InstructorController extends Controller
      */
     public function show(Instructor $instructor)
     {
-        
-        $assignmentIds = []; 
+
+        $assignmentIds = [];
         $assignments = Assignment::where('fk_instructor', $instructor->id)->get();
         foreach ($assignments as $assignment) {
             array_push($assignmentIds, $assignment->id);
@@ -169,5 +172,60 @@ class InstructorController extends Controller
         }
 
         return response()->json($data);
+    }
+
+    /**
+     * Display a list of ievents by instructor in a table.
+     *
+     * @param \App\Models\Instructor $instructor
+     * @return \Illuminate\Http\Response
+     */
+    public function listEvents(Instructor $instructor)
+    {
+        $eventosaMostrar = new Collection();
+        $eventos = Event::whereIn(
+            'fk_assignment',
+            Assignment::select('id')->where('fk_instructor', $instructor->id)
+                ->get()->toArray())
+            ->orderBy('start', 'DESC')
+            ->get();
+        foreach ($eventos as $evento) {
+            $fecha = $evento->start;
+            $newfecha = Carbon::parse($fecha)->format('d/m/Y');
+            $horainicio = $evento->start;
+            $horafin = $evento->end;
+            $newhorainicio = Carbon::parse($horainicio)->format('h:i A');
+            $newhorafin = Carbon::parse($horafin)->format('h:i A');
+            $asignacion = Assignment::find($evento->fk_assignment);
+            if (!empty($asignacion->fk_ficha)) {
+                $ficha = Card::find($asignacion->fk_ficha);
+                $numeroficha = $ficha->numero;
+            } else {
+                $numeroficha = "Sin Ficha Asignada";
+            }
+            $ambiente = Environment::find($asignacion->fk_ambiente);
+            $nombreambiente = $ambiente->nombre;
+            if (empty($eventosaMostrar)) {
+                $eventosaMostrar = collect([[
+                    'fechaevento' => $newfecha,
+                    'horainicio' => $newhorainicio,
+                    'horafin' => $newhorafin,
+                    'numeroficha' => $numeroficha,
+                    'nombreambiente' => $nombreambiente,
+                    'tipo' => $asignacion->tipo
+                ]]);
+            } else {
+                $eventosaMostrar->push([
+                    'fechaevento' => $newfecha,
+                    'horainicio' => $newhorainicio,
+                    'horafin' => $newhorafin,
+                    'numeroficha' => $numeroficha,
+                    'nombreambiente' => $nombreambiente,
+                    'tipo' => $asignacion->tipo
+                ]);
+            }
+        }
+
+        return view('instructores.listahorarios', compact('instructor', 'eventosaMostrar'));
     }
 }

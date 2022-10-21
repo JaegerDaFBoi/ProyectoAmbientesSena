@@ -1,7 +1,7 @@
 <div>
     <div class="row mb-3">
         <div class="col-md-6">
-            <button type="button" class="btn btn-block btn-md" style="background-color: #F05C12;"
+            <button type="button" class="btn btn-block btn-md bg-gradient-orange"
                 wire:click='mostrarFormulario'>
                 Registrar Asignaciones
             </button>
@@ -11,13 +11,13 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header" style="background-color: #F05C12;">
-                        <h3 class="card-title">Datos de asignación</h3>
+                    <div class="card-header bg-gradient-orange">
+                        <h3 class="card-title text-navy">Datos de asignación</h3>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body bg-gradient-gray">
                         <div class="row">
                             <x-adminlte-select name="tipoAsignacion" id="tipoAsignacion" label="Tipo de Evento"
-                                label-class="text-dark" fgroup-class="col-md-6" wire:model="tipo"
+                                label-class="text-navy" fgroup-class="col-md-6" wire:model="tipo"
                                 wire:change='cambiarFormulario'>
                                 <option selected value="0">Seleccione...</option>
                                 <option value="Titulada">Formación Titulada</option>
@@ -28,7 +28,7 @@
                         @if ($formularioTitulada)
                             <div class="row">
                                 <x-adminlte-select name="fichaAsignacion" label="Ficha de formación"
-                                    label-class="text-dark" fgroup-class="col-md-6" wire:model='fichaSeleccionada'
+                                    label-class="text-navy" fgroup-class="col-md-6" wire:model='fichaSeleccionada'
                                     wire:change='seleccionarPrograma'>
                                     <option selected value="0">Seleccione una ficha</option>
                                     @foreach ($fichas as $ficha)
@@ -37,14 +37,14 @@
                                 </x-adminlte-select>
                                 @if ($programaFormacion)
                                     <x-adminlte-input type="text" name="programaFormacion"
-                                        label="Programa de Formación" fgroup-class="col-md-6" disabled
+                                        label="Programa de Formación" label-class="text-navy" fgroup-class="col-md-6" disabled
                                         value="{{ $programaFormacion->nombre }}" />
                                 @endif
                             </div>
                             @if ($programaFormacion)
                                 <div class="row">
                                     <x-adminlte-select name="competenciaAsignacion" label="Competencia"
-                                        label-class="text-dark" fgroup-class="col-md-6"
+                                    label-class="text-navy" fgroup-class="col-md-6"
                                         wire:model='competenciaSeleccionada' wire:change='seleccionarResultados'>
                                         <option selected value="0">Seleccione una competencia</option>
                                         @foreach ($competencias as $competencia)
@@ -53,7 +53,7 @@
                                     </x-adminlte-select>
 
                                     <x-adminlte-textarea name="descripcionCompetencia"
-                                        label="Descripción de competencia" fgroup-class="col-md-6" rows=2 disabled>
+                                        label="Descripción de competencia" label-class="text-navy" fgroup-class="col-md-6" rows=2 disabled>
                                         @if ($competenciaSeleccionada)
                                             {{ $competenciaAsignacion->descripcion }}
                                         @endif
@@ -62,7 +62,7 @@
                                 @if ($competenciaSeleccionada)
                                     <div class="row">
                                         <x-adminlte-select name="resultadoAsignacion" label="Resultado de Aprendizaje"
-                                            label-class="text-dark" fgroup-class="col-md-6"
+                                        label-class="text-navy" fgroup-class="col-md-6"
                                             wire:model='resultadoSeleccionado' wire:change='asignarResultado'>
                                             <option selected value="0">Seleccione un resultado</option>
                                             @foreach ($resultados as $resultado)
@@ -72,7 +72,7 @@
                                         </x-adminlte-select>
 
                                         <x-adminlte-textarea name="descripcionResultado"
-                                            label="Descripción de resultado de aprendizaje" fgroup-class="col-md-6"
+                                            label="Descripción de resultado de aprendizaje" label-class="text-navy" fgroup-class="col-md-6"
                                             rows=2 disabled>
                                             @if ($resultadoSeleccionado)
                                                 {{ $resultadoAsignacion->descripcion }}
@@ -83,7 +83,7 @@
                             @endif
                             <div class="row">
                                 <x-adminlte-select name="instructorAsignacion" label="Instructor"
-                                    label-class="text-dark" fgroup-class="col-md-6" wire:model='instructorSeleccionado'>
+                                label-class="text-navy" fgroup-class="col-md-6" wire:model='instructorSeleccionado'>
                                     <option selected value="0">Seleccione un instructor</option>
                                     @foreach ($instructores as $instructor)
                                         <option value="{{ $instructor->id }}">{{ $instructor->nombre }}
@@ -91,7 +91,7 @@
                                     @endforeach
                                 </x-adminlte-select>
                                 <x-adminlte-select name="ambienteAsignacion" label="Ambiente de Formación"
-                                    label-class="text-dark" fgroup-class="col-md-6" wire:model='ambienteSeleccionado'>
+                                label-class="text-navy" fgroup-class="col-md-6" wire:model='ambienteSeleccionado'>
                                     <option selected value="0">Seleccione un ambiente</option>
                                     @foreach ($ambientes as $ambiente)
                                         <option value="{{ $ambiente->id }}">{{ $ambiente->nombre }}</option>
@@ -100,12 +100,12 @@
                             </div>
                             <div class="row">
                                 <x-adminlte-textarea name="descripcionAsignacion" label="Descripción (Opcional)"
-                                    rows="4" col="10" label-class="text-dark" fgroup-class="col-md-6" />
+                                    rows="4" col="10" label-class="text-navy" fgroup-class="col-md-6" />
                             </div>
                         @elseif ($formularioOpcional)
                             <div class="row">
                                 <x-adminlte-select name="instructorAsignacion" label="Instructor"
-                                    label-class="text-dark" fgroup-class="col-md-6" wire:model='instructorSeleccionado'>
+                                label-class="text-navy" fgroup-class="col-md-6" wire:model='instructorSeleccionado'>
                                     <option selected value="0">Seleccione un instructor</option>
                                     @foreach ($instructores as $instructor)
                                         <option value="{{ $instructor->id }}">{{ $instructor->nombre }}
@@ -113,7 +113,7 @@
                                     @endforeach
                                 </x-adminlte-select>
                                 <x-adminlte-select name="ambienteAsignacion" label="Ambiente de Formación"
-                                    label-class="text-dark" fgroup-class="col-md-6" wire:model='ambienteSeleccionado'>
+                                label-class="text-navy" fgroup-class="col-md-6" wire:model='ambienteSeleccionado'>
                                     <option selected value="0">Seleccione un ambiente</option>
                                     @foreach ($ambientes as $ambiente)
                                         <option value="{{ $ambiente->id }}">{{ $ambiente->nombre }}</option>
@@ -122,9 +122,9 @@
                             </div>
                             <div class="row">
                                 <x-adminlte-input type="text" name="tituloEvento" id="tituloEvento"
-                                    label="Titulo del evento" fgroup-class="col-md-6" />
+                                    label="Titulo del evento" label-class="text-navy" fgroup-class="col-md-6" />
                                 <x-adminlte-textarea name="descripcionEvento" label="Descripción (Opcional)"
-                                    rows="4" col="10" label-class="text-dark" fgroup-class="col-md-6" />
+                                    rows="4" col="10" label-class="text-navy" fgroup-class="col-md-6" />
                             </div>
                         @endif
                     </div>
