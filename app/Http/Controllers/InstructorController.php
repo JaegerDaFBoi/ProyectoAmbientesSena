@@ -175,7 +175,7 @@ class InstructorController extends Controller
     }
 
     /**
-     * Display a list of ievents by instructor in a table.
+     * Display a list of events by instructor in a table.
      *
      * @param \App\Models\Instructor $instructor
      * @return \Illuminate\Http\Response

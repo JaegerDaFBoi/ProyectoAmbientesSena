@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Assignment;
 use App\Models\Card;
 use App\Models\Competence;
+use App\Models\Environment;
 use App\Models\Event;
 use App\Models\Instructor;
 use App\Models\LearningOutcome;
 use App\Models\Program;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -193,5 +195,57 @@ class CardController extends Controller
         }
 
         return response()->json($data);
+    }
+
+    /**
+     * Display a list of ievents by instructor in a table.
+     *
+     * @param \App\Models\Card $ficha
+     * @return \Illuminate\Http\Response
+     */
+    public function listEvents(Card $ficha)
+    {
+        $eventosaMostrar = new Collection();
+        $eventos = Event::whereIn(
+            'fk_assignment',
+            Assignment::select('id')->where('fk_ficha', $ficha->id)
+            ->get()->toArray()
+        )->orderBy('start', 'DESC')
+        ->get();
+        foreach ($eventos as $evento) {
+            $fecha = $evento->start;
+            $newfecha = Carbon::parse($fecha)->format('d/m/Y');
+            $horainicio = $evento->start;
+            $horafin = $evento->end;
+            $newhorainicio = Carbon::parse($horainicio)->format('h:i A');
+            $newhorafin = Carbon::parse($horafin)->format('h:i A');
+            $asignacion = Assignment::find($evento->fk_assignment);
+            $instructor = Instructor::find($asignacion->fk_instructor);
+            $nombreinstructor = $instructor->nombre . " " . $instructor->apellidos;
+            $ambiente = Environment::find($asignacion->fk_ambiente);
+            $nombreambiente = $ambiente->nombre;
+            $competencia = Competence::find($asignacion->fk_competencia);
+            $codigocompetencia = $competencia->codigo;
+            if (empty($eventosaMostrar)) {
+                $eventosaMostrar = collect([[
+                    'fechaevento' => $newfecha,
+                    'horainicio' => $newhorainicio,
+                    'horafin' => $newhorafin,
+                    'nombreinstructor' => $nombreinstructor,
+                    'nombreambiente' => $nombreambiente,
+                    'codigocompetencia' => $codigocompetencia
+                ]]);
+            } else {
+                $eventosaMostrar->push([
+                    'fechaevento' => $newfecha,
+                    'horainicio' => $newhorainicio,
+                    'horafin' => $newhorafin,
+                    'nombreinstructor' => $nombreinstructor,
+                    'nombreambiente' => $nombreambiente,
+                    'codigocompetencia' => $codigocompetencia
+                ]);
+            }
+        }
+        return view('fichas.listahorarios', compact('ficha', 'eventosaMostrar'));
     }
 }

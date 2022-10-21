@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Assignment;
+use App\Models\Card;
 use App\Models\Competence;
 use App\Models\Environment;
 use App\Models\Event;
+use App\Models\Instructor;
 use App\Models\LearningOutcome;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
 class EnvironmentController extends Controller
@@ -167,5 +170,65 @@ class EnvironmentController extends Controller
         }
 
         return response()->json($data);
+    }
+
+    /**
+     * Display a list of events by environment in a table.
+     *
+     * @param \App\Models\Environment $ambiente
+     * @return \Illuminate\Http\Response
+     */
+    public function listEvents(Environment $ambiente)
+    {
+        $eventosaMostrar = new Collection();
+        $eventos = Event::whereIn(
+            'fk_assignment',
+            Assignment::select('id')->where('fk_ambiente', $ambiente->id)
+                ->get()->toArray()
+        )
+            ->orderBy('start', 'DESC')
+            ->get();
+        foreach ($eventos as $evento) {
+            $fecha = $evento->start;
+            $newfecha = Carbon::parse($fecha)->format('d/m/Y');
+            $horainicio = $evento->start;
+            $horafin = $evento->end;
+            $newhorainicio = Carbon::parse($horainicio)->format('h:i A');
+            $newhorafin = Carbon::parse($horafin)->format('h:i A');
+            $asignacion = Assignment::find($evento->fk_assignment);
+            if (!empty($asignacion->fk_ficha)) {
+                $ficha = Card::find($asignacion->fk_ficha);
+                $numeroficha = $ficha->numero;
+            } else {
+                $numeroficha = "Sin Ficha Asignada";
+            }
+            if ($asignacion->tipo == "Titulada") {
+                $titulo = $asignacion->tipo;
+            } else {
+                $titulo = $evento->title;
+            }
+            $instructor = Instructor::find($asignacion->fk_instructor);
+            $nombreinstructor = $instructor->nombre . " " . $instructor->apellidos;
+            if (empty($eventosaMostrar)) {
+                $eventosaMostrar = collect([[
+                    'fechaevento' => $newfecha,
+                    'horainicio' => $newhorainicio,
+                    'horafin' => $newhorafin,
+                    'numeroficha' => $numeroficha,
+                    'nombreinstructor' => $nombreinstructor,
+                    'titulo' => $titulo
+                ]]);
+            } else {
+                $eventosaMostrar->push([
+                    'fechaevento' => $newfecha,
+                    'horainicio' => $newhorainicio,
+                    'horafin' => $newhorafin,
+                    'numeroficha' => $numeroficha,
+                    'nombreinstructor' => $nombreinstructor,
+                    'titulo' => $titulo
+                ]);
+            }
+        }
+        return view('ambientes.listahorarios', compact('ambiente', 'eventosaMostrar'));
     }
 }

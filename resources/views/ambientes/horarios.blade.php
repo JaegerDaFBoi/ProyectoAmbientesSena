@@ -23,5 +23,10 @@
 @stop
 
 @section('content')
+<div class="row mb-2">
+  <div class="col-md-6">
+    <a href="{{ route('ambientes.listahorarios', $ambiente) }}" class="btn btn-block bg-gradient-orange">Ir a Lista de Horarios para impresión</a>
+  </div>
+</div>
 <livewire:asignacion.calendario-ambiente :events='$events' />
 @stop

@@ -65,6 +65,7 @@ Route::middleware([
                 Route::get('/index', 'index')->name('index');
                 Route::get('/{ambiente}/horarios', 'show')->name('horarios');
                 Route::get('/{eventid}/evento', 'searchEvent')->name('evento');
+                Route::get('/{ambiente}/listahorarios', 'listEvents')->name('listahorarios');
             });
         });
     });
@@ -90,6 +91,7 @@ Route::middleware([
                 Route::get('/{ficha}/edit', 'edit')->name('edit');
                 Route::get('/{ficha}/horarios', 'show')->name('horarios');
                 Route::get('/{eventid}/evento', 'searchEvent')->name('evento');
+                Route::get('/{ficha}/listahorarios', 'listEvents')->name('listahorarios');
             });
         });
     });
