@@ -1,7 +1,7 @@
 <div>
     <div class="row">
         <div class="col-md-6">
-            <table class="table table-bordered table-dark table-striped table-hover">
+            <table id="tablaFichas" class="table table-bordered table-dark table-striped table-hover">
                 <thead>
                     <tr>
                         <th class="text-center text-orange">#</th>
@@ -99,8 +99,28 @@
                         </div>
                     </div>
                     @endif
-                </div>
+                </div> 
             </div>
         </div>
     </div>
+    @push('js')
+    <script>
+        $(document).ready(function() {
+            $('#tablaFichas').DataTable({
+                "paging": true,
+                "lengthChange": true,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": true,
+                "responsive": true,
+                "scrollX": true,
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.12.1/i18n/es-MX.json'
+                }
+            });
+            $('.dataTables_length').addClass('bs-select');
+        });
+    </script>
+@endpush
 </div>

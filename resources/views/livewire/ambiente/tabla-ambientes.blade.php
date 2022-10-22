@@ -1,7 +1,7 @@
 <div>
     <div class="row mb-3">
         <div class="col-md-12">
-            <table class="table table-bordered table-dark table-striped table-hover">
+            <table id="tablaAmbientes" class="table table-bordered table-dark table-striped table-hover">
                 <thead>
                     <th class="text-center text-orange">#</th>
                     <th class="text-orange">Nombre</th>
@@ -97,4 +97,24 @@
         </div>
     @endif
 
+    @push('js')
+    <script>
+        $(document).ready(function() {
+            $('#tablaAmbientes').DataTable({
+                "paging": true,
+                "lengthChange": true,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": true,
+                "responsive": true,
+                "scrollX": true,
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.12.1/i18n/es-MX.json'
+                }
+            });
+            $('.dataTables_length').addClass('bs-select');
+        });
+    </script>
+@endpush
 </div>
