@@ -1,4 +1,7 @@
 <div>
+    @php
+    use Illuminate\Http\Request;
+    @endphp
     <div wire:ignore>
         <div class="row">
             <div class="col-md-12">
@@ -11,10 +14,11 @@
                 </div>
             </div>
         </div>
-        
-        <x-adminlte-modal id="modalEvento" title="Información del evento" icon="fas fa-calendar-check" theme="gradient-orange">
-            <input type="hidden" id="idevento">
-            <div class="row" >
+
+        <x-adminlte-modal id="modalEvento" title="Información del evento" icon="fas fa-calendar-check"
+            theme="gradient-orange">
+            <input type="hidden" id="idevento" name="idevento">
+            <div class="row">
                 <div class="col-md-12">
                     <p><strong class="text-navy">Fecha del evento: </strong><span id="fechaevento"></span></p>
                 </div>
@@ -73,14 +77,24 @@
                     <p><span id="descripcionevento"></span></p>
                 </div>
             </div>
+            @php
+                if (isset($_GET['idevento'])) {
+                    $idevento = $_GET['idevento'];
+                }
+            @endphp
+            <x-slot name="footerSlot">
+                <x-adminlte-button class="mr-auto bg-gradient-orange" label="Editar">
+                    <a href="{{ route('eventos.edit', $idevento) }}"></a>
+                </x-adminlte-button>
+            </x-slot>
         </x-adminlte-modal>
     </div>
 
 </div>
 
 @push('js')
-    <script>
-        document.addEventListener('livewire:load', function() {
+<script>
+    document.addEventListener('livewire:load', function() {
             var now = moment();
             var data = @this.events;
             var calendarEl = document.getElementById('instructorCalendar');
@@ -102,6 +116,7 @@
                 events: JSON.parse(data),
                 eventClick: function(info) {
                     let event = info.event.id;
+                    window.location.href = window.location.href + "?idevento=" + event;
                     var ruta = "/instructores/" + event + "/evento";
                     $.ajax({
                         url: ruta,
@@ -111,7 +126,7 @@
                             console.log(data);
                             $('#modalEvento').modal('show');
                             if (data.tipo == "Titulada") {
-                                $('#idevento').text(data.idevento);
+                                $('#idevento').val(data.idevento);
                                 $('#fichaevento').text(data.ficha);
                                 $('#programaevento').text(data.programa);
                                 $('#instructorevento').text(data.instructor);
@@ -132,7 +147,7 @@
                                 $('#competencia').show();
                                 $('#resultado').show();
                             } else {
-                                $('#idevento').text(data.idevento);
+                                $('#idevento').val(data.idevento);
                                 $('#tituloevento').text(data.titulo);
                                 $('#instructorevento').text(data.instructor);
                                 $('#ambienteevento').text(data.ambiente);
@@ -160,5 +175,5 @@
             });
             calendar.render();
         });
-    </script>
+</script>
 @endpush

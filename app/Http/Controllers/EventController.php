@@ -44,6 +44,10 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'tipoAsignacion' => 'required',
+            'recurrencia' => 'required'
+        ]);
         if ($request->input('recurrencia') == 1) {
             $fichaAsignacion = $request->input('fichaAsignacion');
             $competenciaAsignacion = $request->input('competenciaAsignacion');
@@ -260,9 +264,10 @@ class EventController extends Controller
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function edit(Event $event)
+    public function edit($idevento)
     {
-        //
+        $evento = Event::with('asignacion')->where('id', $idevento)->get();
+        return view('asignaciones.edit', compact('evento'));
     }
 
     /**
