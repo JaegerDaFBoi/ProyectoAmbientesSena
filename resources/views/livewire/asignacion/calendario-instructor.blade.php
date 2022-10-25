@@ -13,6 +13,7 @@
         </div>
         
         <x-adminlte-modal id="modalEvento" title="Información del evento" icon="fas fa-calendar-check" theme="gradient-orange">
+            <input type="hidden" id="idevento">
             <div class="row" >
                 <div class="col-md-12">
                     <p><strong class="text-navy">Fecha del evento: </strong><span id="fechaevento"></span></p>
@@ -110,6 +111,7 @@
                             console.log(data);
                             $('#modalEvento').modal('show');
                             if (data.tipo == "Titulada") {
+                                $('#idevento').text(data.idevento);
                                 $('#fichaevento').text(data.ficha);
                                 $('#programaevento').text(data.programa);
                                 $('#instructorevento').text(data.instructor);
@@ -130,6 +132,7 @@
                                 $('#competencia').show();
                                 $('#resultado').show();
                             } else {
+                                $('#idevento').text(data.idevento);
                                 $('#tituloevento').text(data.titulo);
                                 $('#instructorevento').text(data.instructor);
                                 $('#ambienteevento').text(data.ambiente);

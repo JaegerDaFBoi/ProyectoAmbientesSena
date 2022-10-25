@@ -24,6 +24,15 @@
                                 <option value="Complementaria">Formación Complementaria</option>
                                 <option value="Adicionales">Horas Adicionales</option>
                             </x-adminlte-select>
+                            <x-adminlte-select name="recurrencia" id="recurrencia" label="¿Desea registrar un evento recurrente?" label-class="text-navy" fgroup-class="col-md-3" wire:model="recurrencia">
+                                <option value="0" selected>Seleccione...</option>
+                                <option value="1">SI</option>
+                                <option value="2">NO</option>
+                            </x-adminlte-select>
+                            @if ($recurrencia == 1)
+                            <x-adminlte-input type="number" name="numSemanas" id="numSemanas"
+                            label="Semanas a repetir evento" label-class="text-navy" fgroup-class="col-md-3" />
+                            @endif
                         </div>
                         @if ($formularioTitulada)
                             <div class="row">

@@ -27,6 +27,7 @@ class CrearEvento extends Component
     public $instructorSeleccionado;
     public $ambienteSeleccionado;
     public $tipo;
+    public $recurrencia;
 
     public function mostrarFormulario()
     {
