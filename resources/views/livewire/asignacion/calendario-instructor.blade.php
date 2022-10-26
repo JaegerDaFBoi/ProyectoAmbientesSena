@@ -1,7 +1,4 @@
 <div>
-    @php
-    use Illuminate\Http\Request;
-    @endphp
     <div wire:ignore>
         <div class="row">
             <div class="col-md-12">
@@ -77,14 +74,9 @@
                     <p><span id="descripcionevento"></span></p>
                 </div>
             </div>
-            @php
-                if (isset($_GET['idevento'])) {
-                    $idevento = $_GET['idevento'];
-                }
-            @endphp
             <x-slot name="footerSlot">
-                <x-adminlte-button class="mr-auto bg-gradient-orange" label="Editar">
-                    <a href="{{ route('eventos.edit', $idevento) }}"></a>
+                <x-adminlte-button class="mr-auto bg-gradient-orange" label="Editar" id="edit">
+                    {{-- <a href="{{ route('eventos.edit', $idevento) }}"></a> --}}
                 </x-adminlte-button>
             </x-slot>
         </x-adminlte-modal>
@@ -116,7 +108,6 @@
                 events: JSON.parse(data),
                 eventClick: function(info) {
                     let event = info.event.id;
-                    window.location.href = window.location.href + "?idevento=" + event;
                     var ruta = "/instructores/" + event + "/evento";
                     $.ajax({
                         url: ruta,
@@ -165,6 +156,7 @@
                                 $('#resultado').hide();
                                 $('#titulo').show();
                             }
+                           
 
                         },
                         error: function(data) {
@@ -172,8 +164,23 @@
                         }
                     });
                 }
+                
             });
             calendar.render();
         });
+</script>
+<script>
+    
+    var editar = document.getElementById('edit').addEventListener('click', function () {
+        window.location.href = "/eventos/" + document.getElementById('idevento').value + "/editar";
+            // ruta = '/eventos/' + document.getElementById('idevento').value + '/edit';
+            // fetch(ruta, {
+            //     method: "GET",
+            //     headers: {
+            //         "Content-Type": "application/json",
+            //         "X-CSRF-Token": csrfToken
+            //     }
+            // }).catch(error => console.error(error));
+         });
 </script>
 @endpush
