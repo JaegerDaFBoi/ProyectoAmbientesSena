@@ -75,9 +75,7 @@
                 </div>
             </div>
             <x-slot name="footerSlot">
-                <x-adminlte-button class="mr-auto bg-gradient-orange" label="Editar" id="edit">
-                    {{-- <a href="{{ route('eventos.edit', $idevento) }}"></a> --}}
-                </x-adminlte-button>
+                <x-adminlte-button class="mr-auto bg-gradient-orange" label="Editar" id="edit" />
             </x-slot>
         </x-adminlte-modal>
     </div>
@@ -173,14 +171,6 @@
     
     var editar = document.getElementById('edit').addEventListener('click', function () {
         window.location.href = "/eventos/" + document.getElementById('idevento').value + "/editar";
-            // ruta = '/eventos/' + document.getElementById('idevento').value + '/edit';
-            // fetch(ruta, {
-            //     method: "GET",
-            //     headers: {
-            //         "Content-Type": "application/json",
-            //         "X-CSRF-Token": csrfToken
-            //     }
-            // }).catch(error => console.error(error));
          });
 </script>
 @endpush

@@ -79,6 +79,7 @@ class EventController extends Controller
                 return Redirect::route('eventos.index')->with("message", "No se puede crear el evento. Ya existe un evento en este rango de fechas con las asignaciones solicitadas. Verifique la asignación de instructor, ambiente o ficha de formación");
             } else {
                 if ($request->input('tipoAsignacion') == "Titulada") {
+                    $asignacion = new Assignment();
                     $asignacion->fk_ficha = $fichaAsignacion;
                     $asignacion->fk_competencia = $competenciaAsignacion;
                     $asignacion->fk_resultado = $resultadoAsignacion;
@@ -99,6 +100,7 @@ class EventController extends Controller
                     $event->fk_assignment = $assignmentkey;
                     $event->save();
                 } else {
+                    $asignacion = new Assignment();
                     $asignacion->fk_instructor = $request->input('instructorAsignacion');
                     $asignacion->tipo = $request->input('tipoAsignacion');
                     $asignacion->fk_ambiente = $request->input('ambienteAsignacion');
@@ -132,6 +134,7 @@ class EventController extends Controller
                     return Redirect::route('eventos.index')->with("message", "No se puede crear el evento. Ya existe un evento en este rango de fechas con las asignaciones solicitadas. Verifique la asignación de instructor, ambiente o ficha de formación");
                 } else {
                     if ($request->input('tipoAsignacion') == "Titulada") {
+                        $asignacion = new Assignment();
                         $asignacion->fk_ficha = $fichaAsignacion;
                         $asignacion->fk_competencia = $competenciaAsignacion;
                         $asignacion->fk_resultado = $resultadoAsignacion;
@@ -152,6 +155,7 @@ class EventController extends Controller
                         $event->fk_assignment = $assignmentkey;
                         $event->save();
                     } else {
+                        $asignacion = new Assignment();
                         $asignacion->fk_instructor = $request->input('instructorAsignacion');
                         $asignacion->tipo = $request->input('tipoAsignacion');
                         $asignacion->fk_ambiente = $request->input('ambienteAsignacion');
@@ -189,8 +193,8 @@ class EventController extends Controller
         $format = "Y-m-d H:i:s"; //Formato de fechas
         $fechaInicio = Carbon::parse($request->input('fechaInicio'))->format($format); // Parseo las fechas con Carbon
         $fechaFin = Carbon::parse($request->input('fechaFin'))->format($format); //
+        
         //Creo el objeto Asignacion
-        $asignacion = new Assignment();
         $asignaciones = Assignment::whereIn(
             'id',
             Event::select('fk_assignment')->whereBetween('start', [$fechaInicio, $fechaFin])->orwhereBetween('end', [$fechaInicio, $fechaFin])->get()->toArray()
@@ -203,6 +207,7 @@ class EventController extends Controller
             return Redirect::route('eventos.index')->with("message", "No se puede crear el evento. Ya existe un evento en este rango de fechas con las asignaciones solicitadas. Verifique la asignación de instructor, ambiente o ficha de formación");
         } else {
             if ($request->input('tipoAsignacion') == "Titulada") {
+                $asignacion = new Assignment();
                 $asignacion->fk_ficha = $fichaAsignacion;
                 $asignacion->fk_competencia = $competenciaAsignacion;
                 $asignacion->fk_resultado = $resultadoAsignacion;
@@ -223,6 +228,7 @@ class EventController extends Controller
                 $event->fk_assignment = $assignmentkey;
                 $event->save();
             } else {
+                $asignacion = new Assignment();
                 $asignacion->fk_instructor = $request->input('instructorAsignacion');
                 $asignacion->tipo = $request->input('tipoAsignacion');
                 $asignacion->fk_ambiente = $request->input('ambienteAsignacion');
@@ -266,7 +272,7 @@ class EventController extends Controller
      */
     public function edit($idevento)
     {
-        $evento = Event::find($idevento);
+        $evento = Event::where('id', $idevento)->with('asignacion')->get();
         return view('asignaciones.edit', compact('evento'));
     }
 

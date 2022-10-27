@@ -24,7 +24,14 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
-            <livewire:asignacion.editar-asignacion :evento='$evento' />
+            <div class="card">
+                <div class="card-header bg-gradient-orange">
+                    <h3>Formulario para edición de evento</h3>
+                </div>
+                <div class="card-body bg-gradient-gray">
+                    <livewire:asignacion.editar-asignacion :evento="$evento" />
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -25,9 +25,9 @@
                                 <option value="Adicionales">Horas Adicionales</option>
                             </x-adminlte-select>
                             <x-adminlte-select name="recurrencia" id="recurrencia" label="¿Desea registrar un evento recurrente?" label-class="text-navy" fgroup-class="col-md-3" wire:model="recurrencia">
-                                <option selected disabled>Seleccione...</option>
+                                <option disabled>Seleccione...</option>
                                 <option value="1">SI</option>
-                                <option value="2">NO</option>
+                                <option value="2" selected >NO</option>
                             </x-adminlte-select>
                             @if ($recurrencia == 1)
                             <x-adminlte-input type="number" name="numSemanas" id="numSemanas"
