@@ -76,6 +76,7 @@
             </div>
             <x-slot name="footerSlot">
                 <x-adminlte-button class="mr-auto bg-gradient-orange" label="Editar" id="edit" />
+                <x-adminlte-button class="mr-auto bg-gradient-danger" label="Eliminar" id="delete" />
             </x-slot>
         </x-adminlte-modal>
     </div>
@@ -171,6 +172,10 @@
     
     var editar = document.getElementById('edit').addEventListener('click', function () {
         window.location.href = "/eventos/" + document.getElementById('idevento').value + "/editar";
+         });
+
+         var eliminar = document.getElementById('delete').addEventListener('click', function () {
+            window.location.href = "/eventos/" + document.getElementById('idevento').value + "/eliminar";
          });
 </script>
 @endpush

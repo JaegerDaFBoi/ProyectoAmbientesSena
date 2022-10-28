@@ -12,8 +12,10 @@
             </div>
         </div>
 
-        <x-adminlte-modal id="modalEvento" title="Información del evento" icon="fas fa-calendar-check" theme="gradient-orange">
-            <div class="row" >
+        <x-adminlte-modal id="modalEvento" title="Información del evento" icon="fas fa-calendar-check"
+            theme="gradient-orange">
+            <input type="hidden" id="idevento" name="idevento">
+            <div class="row">
                 <div class="col-md-12">
                     <p><strong class="text-navy">Fecha del evento: </strong><span id="fechaevento"></span></p>
                 </div>
@@ -72,6 +74,10 @@
                     <p><span id="descripcionevento"></span></p>
                 </div>
             </div>
+            <x-slot name="footerSlot">
+                <x-adminlte-button class="mr-auto bg-gradient-orange" label="Editar" id="edit" />
+                <x-adminlte-button class="mr-auto bg-gradient-danger" label="Eliminar" id="delete" />
+            </x-slot>
         </x-adminlte-modal>
     </div>
 </div>
@@ -109,6 +115,7 @@
                             console.log(data);
                             $('#modalEvento').modal('show');
                             if (data.tipo == "Titulada") {
+                                $('#idevento').val(data.idevento);
                                 $('#fichaevento').text(data.ficha);
                                 $('#programaevento').text(data.programa);
                                 $('#instructorevento').text(data.instructor);
@@ -130,6 +137,7 @@
                                 $('#competencia').show();
                                 $('#resultado').show();
                             } else {
+                                $('#idevento').val(data.idevento);
                                 $('#tituloevento').text(data.titulo);
                                 $('#instructorevento').text(data.instructor);
                                 $('#ambienteevento').text(data.ambiente);
@@ -157,6 +165,15 @@
                 }
             });
             calendar.render();
+        });
+    </script>
+    <script>
+        var editar = document.getElementById('edit').addEventListener('click', function() {
+            window.location.href = "/eventos/" + document.getElementById('idevento').value + "/editar";
+        });
+
+        var eliminar = document.getElementById('delete').addEventListener('click', function() {
+            window.location.href = "/eventos/" + document.getElementById('idevento').value + "/eliminar";
         });
     </script>
 @endpush

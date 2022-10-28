@@ -312,7 +312,7 @@ class EventController extends Controller
             if (count($asignaciones) > 0) {
                 return Redirect::route('eventos.edit', $idevento)->with("message", "No se puede actualizar el evento. Ya existe un evento en este rango de fechas con las asignaciones solicitadas. Verifique la asignación de instructor, ambiente o ficha de formación");
             } else {
-                if ($request->input('tipoAsignacion') == "Titulada") {
+                if ($tipoAsignacion == "Titulada") {
                     $asignacion->fk_ficha = $fichaAsignacion;
                     $asignacion->fk_competencia = $competenciaAsignacion;
                     $asignacion->fk_resultado = $resultadoAsignacion;
@@ -426,8 +426,12 @@ class EventController extends Controller
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Event $event)
+    public function destroy($idevento)
     {
-        //
+        $evento = Event::find($idevento);
+        $asignacion = Assignment::find($evento->fk_assignment);
+        $evento->delete();
+        $asignacion->delete();
+        return Redirect::route('eventos.index');
     }
 }

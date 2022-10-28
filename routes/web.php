@@ -118,6 +118,7 @@ Route::middleware([
                 Route::get('/mostrar', 'show')->name('show');
                 Route::get('/{idevento}/editar', 'edit')->name('edit');
                 Route::put('/{idevento}/actualizar', 'update')->name('update');
+                Route::delete('/{idevento}/eliminar', 'destroy')->name('delete');
             });
         });
     });
