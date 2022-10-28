@@ -272,8 +272,7 @@ class EventController extends Controller
      */
     public function edit($idevento)
     {
-        $evento = Event::where('id', $idevento)->with('asignacion')->get();
-        return view('asignaciones.edit', compact('evento'));
+        return view('asignaciones.edit', compact('idevento'));
     }
 
     /**
