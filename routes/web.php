@@ -117,6 +117,7 @@ Route::middleware([
                 Route::post('/store', 'store')->name('store');
                 Route::get('/mostrar', 'show')->name('show');
                 Route::get('/{idevento}/editar', 'edit')->name('edit');
+                Route::put('/{idevento}/actualizar', 'update')->name('update');
             });
         });
     });

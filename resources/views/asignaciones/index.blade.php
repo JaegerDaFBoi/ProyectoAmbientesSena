@@ -67,7 +67,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <button type="submit" class="btn btn-sm bg-gradient-orange">
+                                    <button type="submit" class="btn bg-gradient-orange">
                                         Guardar Evento
                                     </button>
                                 </div>
